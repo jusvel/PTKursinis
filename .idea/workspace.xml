@@ -4,32 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a8b7cbe6-0520-4e61-818a-5d5dd426460d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mvnw" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mvnw.cmd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/kursinis/ptkursinis/LaunchGUI.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/kursinis/ptkursinis/fxControllers/CustomersPageController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/kursinis/ptkursinis/fxControllers/EmployeesPageController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/kursinis/ptkursinis/fxControllers/ItemPageController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/kursinis/ptkursinis/fxControllers/LoginController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/kursinis/ptkursinis/fxControllers/StoreController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/kursinis/ptkursinis/fxControllers/WarehousePageController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/kursinis/ptkursinis/view/customersPage.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/kursinis/ptkursinis/view/employeesPage.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/kursinis/ptkursinis/view/itemsPage.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/kursinis/ptkursinis/view/loginView.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/kursinis/ptkursinis/view/storeView.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/kursinis/ptkursinis/view/warehousesPage.fxml" afterDir="false" />
+    <list default="true" id="a8b7cbe6-0520-4e61-818a-5d5dd426460d" name="Changes" comment="init">
+      <change afterPath="$PROJECT_DIR$/META-INF/persistence.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kursinis/ptkursinis/fxControllers/RegistrationController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kursinis/ptkursinis/hibernateControllers/CustomHib.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kursinis/ptkursinis/hibernateControllers/GenericHib.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kursinis/ptkursinis/model/Customer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kursinis/ptkursinis/model/Employee.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kursinis/ptkursinis/model/User.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kursinis/ptkursinis/model/UserRole.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/kursinis/ptkursinis/view/registrationView.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kursinis/ptkursinis/fxControllers/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kursinis/ptkursinis/fxControllers/LoginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/kursinis/ptkursinis/view/loginView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/kursinis/ptkursinis/view/loginView.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,6 +28,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="FxmlFile" />
+        <option value="Enum" />
         <option value="Class" />
       </list>
     </option>
@@ -72,6 +61,11 @@
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
     "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "mysql"
+    ]
   }
 }]]></component>
   <component name="RecentsManager">
@@ -110,11 +104,24 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1697556488266</updated>
-      <workItem from="1697556489359" duration="9194000" />
+      <workItem from="1697556489359" duration="16195000" />
     </task>
+    <task id="LOCAL-00001" summary="init">
+      <option name="closed" value="true" />
+      <created>1697572775947</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1697572775947</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="init" />
+    <option name="LAST_COMMIT_MESSAGE" value="init" />
   </component>
 </project>

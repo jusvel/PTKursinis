@@ -2,6 +2,7 @@ module com.kursinis.ptkursinis {
     requires javafx.controls;
     requires javafx.fxml;
     requires jakarta.persistence;
+    requires lombok;
 
 
     opens com.kursinis.ptkursinis to javafx.fxml;
