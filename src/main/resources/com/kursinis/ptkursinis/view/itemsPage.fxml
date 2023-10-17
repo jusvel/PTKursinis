@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.kursinis.ptkursinis.fxControllers.ItemPageController">
+
+    <TableView fx:id="tableView" layoutX="10.0" layoutY="10.0" prefHeight="400.0" prefWidth="600.0">
+        <columns>
+            <!-- ID Column -->
+            <TableColumn text="ID">
+                <cellValueFactory><PropertyValueFactory property="id" /></cellValueFactory>
+            </TableColumn>
+
+            <!-- Name Column -->
+            <TableColumn text="Name">
+                <cellValueFactory><PropertyValueFactory property="name" /></cellValueFactory>
+            </TableColumn>
+
+            <!-- Quantity Column -->
+            <TableColumn text="Quantity">
+                <cellValueFactory><PropertyValueFactory property="quantity" /></cellValueFactory>
+            </TableColumn>
+
+            <!-- Price Column -->
+            <TableColumn text="Price">
+                <cellValueFactory><PropertyValueFactory property="price" /></cellValueFactory>
+            </TableColumn>
+        </columns>
+    </TableView>
+</AnchorPane>
