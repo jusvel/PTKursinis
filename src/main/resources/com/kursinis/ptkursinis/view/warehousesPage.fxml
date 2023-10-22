@@ -81,7 +81,7 @@
                         <Insets top="250.0" />
                      </VBox.margin>
                   </Label>
-                  <ChoiceBox fx:id="selectionChoiceBox" prefWidth="320.0" style="-fx-cursor: hand;">
+                  <ChoiceBox fx:id="selectionChoiceBox" prefWidth="320.0" style="-fx-cursor: hand; -fx-background-color: #FFF;">
                      <VBox.margin>
                         <Insets top="-30.0" />
                      </VBox.margin>

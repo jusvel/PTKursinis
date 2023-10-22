@@ -23,7 +23,7 @@ import java.util.ResourceBundle;
 
 public class WarehousePageController implements PageController, Initializable {
     @FXML
-    public TableView warehousesTableView;
+    public TableView<Warehouse> warehousesTableView;
     public TextField nameTextField;
     public TextField addressTextField;
     public ChoiceBox selectionChoiceBox;
@@ -59,6 +59,9 @@ public class WarehousePageController implements PageController, Initializable {
         this.currentUser = currentUser;
         customHib = new CustomHib(entityManagerFactory);
         loadWarehouses();
+        warehousesTableView.getColumns().forEach(warehousesTableViewColumn -> {
+            selectionChoiceBox.getItems().add(warehousesTableViewColumn.getText());
+        });
     }
 
 
@@ -103,7 +106,7 @@ public class WarehousePageController implements PageController, Initializable {
             return;
         }
         warehouseData.clear();
-        warehouseData.addAll(customHib.getEntitiesSearch(Customer.class, selectionChoiceBox.getValue().toString(), searchTextField.getText()));
+        warehouseData.addAll(customHib.getEntitiesSearch(Warehouse.class, selectionChoiceBox.getValue().toString(), searchTextField.getText()));
     }
 
     public void resetSearch() {

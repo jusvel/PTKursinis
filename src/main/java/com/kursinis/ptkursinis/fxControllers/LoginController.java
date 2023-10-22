@@ -20,7 +20,6 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.List;
 import java.util.ResourceBundle;
 
 public class LoginController implements Initializable{
@@ -50,9 +49,9 @@ public class LoginController implements Initializable{
     }
 
     private void loadStore(User u) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(LaunchGUI.class.getResource("view/storeView.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(LaunchGUI.class.getResource("view/MainWindowView.fxml"));
         Parent parent = fxmlLoader.load();
-        StoreController storeController = fxmlLoader.getController();
+        MainWindowController storeController = fxmlLoader.getController();
         storeController.setData(entityManagerFactory, u);
         Scene scene = new Scene(parent);
         Stage stage = (Stage) usernameField.getScene().getWindow();

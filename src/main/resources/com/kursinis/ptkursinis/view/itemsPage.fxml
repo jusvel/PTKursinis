@@ -54,7 +54,7 @@
                         <Font size="13.0" />
                      </font>
                   </Label>
-                  <ChoiceBox fx:id="productTypeChoiceBox" prefWidth="140.0" />
+                  <ChoiceBox fx:id="productTypeChoiceBox" prefWidth="140.0" style="-fx-background-color: #FFF; -fx-cursor: hand;" />
                   <Label text="Select warehouse" textFill="#794848">
                      <font>
                         <Font size="13.0" />
@@ -63,7 +63,7 @@
                         <Insets top="49.0" />
                      </VBox.margin>
                   </Label>
-                  <ChoiceBox fx:id="warehouseSelectChoiceBox" prefWidth="150.0" />
+                  <ChoiceBox fx:id="warehouseSelectChoiceBox" prefWidth="150.0" style="-fx-background-color: #FFF; -fx-cursor: hand;" />
                </children>
                <HBox.margin>
                   <Insets left="5.0" right="5.0" />
@@ -79,18 +79,31 @@
                      <children>
                         <Label text="Brand" textFill="#794848" />
                         <TextField fx:id="brandTextField" />
-                        <Label text="Name" textFill="#794848" />
+                        <Label text="Name" textFill="#794848">
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin></Label>
                         <TextField fx:id="nameTextField" />
-                        <Label text="Price" textFill="#794848" />
+                        <Label text="Price" textFill="#794848">
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin></Label>
                         <TextField fx:id="priceTextField" />
-                        <Label text="OS" textFill="#794848" />
+                        <Label text="OS" textFill="#794848">
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin></Label>
                         <TextField fx:id="osTextField" />
-                        <Label text="Inches" textFill="#794848" />
+                        <Label text="Inches" textFill="#794848">
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin></Label>
                         <TextField fx:id="inchesTextField" />
-                        <Label text="Resolution" textFill="#794848" />
+                        <Label text="Resolution" textFill="#794848">
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin></Label>
                         <TextField fx:id="resolutionTextField" />
-                        <Label text="Battery" textFill="#794848" />
-                        <TextField fx:id="batteryTextField" />
                      </children>
                      <padding>
                         <Insets left="20.0" right="20.0" top="30.0" />
@@ -101,20 +114,33 @@
                         <Insets left="20.0" right="20.0" top="30.0" />
                      </padding>
                      <children>
-                        <Label text="Ram" textFill="#794848" />
+                        <Label text="Battery (mAh)" textFill="#794848" />
+                        <TextField fx:id="batteryTextField" />
+                        <Label text="Ram (GB)" textFill="#794848">
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin></Label>
                         <TextField fx:id="ramTextField" />
-                        <Label text="Weight" textFill="#794848" />
+                        <Label text="Weight (g)" textFill="#794848">
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin></Label>
                         <TextField fx:id="weightTextField" />
-                        <Label text="Storage" textFill="#794848" />
+                        <Label text="Storage (GB)" textFill="#794848">
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin></Label>
                         <TextField fx:id="storageTextField" />
-                        <Label text="Length" textFill="#794848" />
-                        <TextField fx:id="lengthTextField" />
-                        <Label text="Label" textFill="#794848" />
-                        <TextField />
-                        <Label text="Label" textFill="#794848" />
-                        <TextField />
-                        <Label text="Label" textFill="#794848" />
-                        <TextField />
+                        <Label text="Diameter (mm)" textFill="#794848">
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin></Label>
+                        <TextField fx:id="diameterTextField" />
+                        <Label text="Connection type" textFill="#794848">
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin></Label>
+                        <TextField fx:id="connectionTypeTextField" />
                      </children>
                   </VBox>
                </children>
@@ -127,7 +153,7 @@
                         <Font size="13.0" />
                      </font>
                   </Label>
-                  <ChoiceBox fx:id="columnSelectChoiceBox" prefWidth="180.0" />
+                  <ChoiceBox fx:id="columnSelectChoiceBox" prefWidth="180.0" style="-fx-background-color: #FFF; -fx-cursor: hand;" />
                   <TextField fx:id="searchTextField" promptText="Search...">
                      <VBox.margin>
                         <Insets top="20.0" />
@@ -160,13 +186,13 @@
       <VBox prefHeight="420.0" prefWidth="241.0" BorderPane.alignment="CENTER">
          <children>
             <Label text="Warehouses" textFill="#794848" />
-            <ListView fx:id="warehouseListView" prefHeight="324.0" prefWidth="218.0" />
+            <ListView fx:id="warehouseListView" prefHeight="326.0" prefWidth="218.0" />
             <Button mnemonicParsing="false" onAction="#viewAllProducts" prefHeight="30.0" prefWidth="218.0" style="-fx-background-color: #593636; -fx-cursor: hand;" text="View all products" textFill="#fdf2f2">
                <font>
                   <Font size="14.0" />
                </font>
                <VBox.margin>
-                  <Insets top="20.0" />
+                  <Insets top="21.0" />
                </VBox.margin>
             </Button>
             <Separator prefWidth="238.0">
@@ -179,7 +205,7 @@
             <Insets />
          </BorderPane.margin>
          <padding>
-            <Insets left="10.0" right="10.0" top="10.0" />
+            <Insets left="10.0" right="10.0" top="7.0" />
          </padding>
       </VBox>
    </left>
@@ -206,6 +232,11 @@
                   <PropertyValueFactory property="price" />
                </cellValueFactory>
             </TableColumn>
+            <TableColumn fx:id="typeColumn" text="Type">
+               <cellValueFactory>
+                  <PropertyValueFactory property="type" />
+               </cellValueFactory>
+            </TableColumn>
             <TableColumn fx:id="osColumn" text="OS">
                <cellValueFactory>
                   <PropertyValueFactory property="os" />
@@ -226,7 +257,7 @@
                   <PropertyValueFactory property="battery" />
                </cellValueFactory>
             </TableColumn>
-            <TableColumn fx:id="ramColumn" text="Ram">
+            <TableColumn fx:id="ramColumn" text="RAM">
                <cellValueFactory>
                   <PropertyValueFactory property="ram" />
                </cellValueFactory>
@@ -241,6 +272,17 @@
                   <PropertyValueFactory property="storage" />
                </cellValueFactory>
             </TableColumn>
+            <TableColumn fx:id="diameterColumn" text="Dia">
+               <cellValueFactory>
+                  <PropertyValueFactory property="diameter" />
+               </cellValueFactory>
+            </TableColumn>
+            <TableColumn fx:id="connectionTypeColumn" text="ConType">
+               <cellValueFactory>
+                  <PropertyValueFactory property="connectionType" />
+               </cellValueFactory>
+            </TableColumn>
+
 
          </columns>
       </TableView>

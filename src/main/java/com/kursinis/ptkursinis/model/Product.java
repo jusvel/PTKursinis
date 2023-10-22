@@ -26,6 +26,8 @@ public abstract class Product implements Serializable {
     @ManyToOne
     @JoinColumn(name = "warehouse_id")
     private Warehouse warehouse;
+    @Column(name = "DTYPE", insertable = false, updatable = false)
+    String type;
 
     public Product(String name, double price, String brand, Warehouse warehouse) {
         this.name = name;

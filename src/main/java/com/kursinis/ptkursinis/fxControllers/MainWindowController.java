@@ -1,6 +1,7 @@
 package com.kursinis.ptkursinis.fxControllers;
 
 import com.kursinis.ptkursinis.LaunchGUI;
+import com.kursinis.ptkursinis.helpers.JavaFxCustomUtils;
 import com.kursinis.ptkursinis.model.Employee;
 import com.kursinis.ptkursinis.model.User;
 import jakarta.persistence.EntityManagerFactory;
@@ -8,12 +9,21 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
-import lombok.Getter;
+import javafx.stage.Stage;
 
-public class StoreController {
+import java.io.IOException;
+
+public class MainWindowController {
+    public Button storeButton;
+    public Button discussionButton;
+    public Button itemsButton;
+    public Button warehousesButton;
+    public Button customersButton;
+    public Button logOutButton;
     private EntityManagerFactory entityManagerFactory;
     private User currentUser;
 
@@ -45,6 +55,9 @@ public class StoreController {
         this.currentUser = currentUser;
         if(currentUser.getClass().getSimpleName().equals("Customer")){
             vbox.getChildren().removeAll(vbox.getChildren());
+            vbox.getChildren().add(storeButton);
+            vbox.getChildren().add(discussionButton);
+            vbox.getChildren().add(logOutButton);
         } else if(currentUser.getClass().getSimpleName().equals("Employee") && ((Employee) currentUser).getIsAdmin()){
             //TODO: add employee page
         } else if(currentUser.getClass().getSimpleName().equals("Employee") && !((Employee) currentUser).getIsAdmin()){
@@ -52,4 +65,17 @@ public class StoreController {
         }
     }
 
+    public void logOut() throws IOException {
+        currentUser = null;
+        FXMLLoader fxmlLoader = new FXMLLoader(LaunchGUI.class.getResource("view/loginView.fxml"));
+        Parent parent = fxmlLoader.load();
+        LoginController loginController = fxmlLoader.getController();
+        Scene scene = new Scene(parent);
+        Stage stage = (Stage) vbox.getScene().getWindow();
+        stage.setTitle("Login");
+        JavaFxCustomUtils.setIcon(stage);
+        stage.setScene(scene);
+        stage.show();
+        stage.centerOnScreen();
+    }
 }

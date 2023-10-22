@@ -102,7 +102,7 @@ public class GenericHib<T> {
             CriteriaBuilder cb = em.getCriteriaBuilder();
             CriteriaQuery<T> cbQuery = cb.createQuery(entityClass);
             Root<T> root= cbQuery.from(entityClass);
-            cbQuery.select(root).where( (column.toLowerCase().contains("id")) ?
+            cbQuery.select(root).where((column.toLowerCase().contains("id")) ?
                     cb.equal(root.get(column), Integer.parseInt(value)) :
                     cb.like(root.get(column), "%" + value + "%")
             );

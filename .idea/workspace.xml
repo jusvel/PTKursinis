@@ -5,37 +5,27 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a8b7cbe6-0520-4e61-818a-5d5dd426460d" name="Changes" comment="second">
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/kursinis/ptkursinis/fxControllers/PageController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/kursinis/ptkursinis/helpers/JavaFxCustomUtils.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/kursinis/ptkursinis/helpers/StringHelpers.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/kursinis/ptkursinis/model/Charger.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/kursinis/ptkursinis/model/Phone.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/kursinis/ptkursinis/model/Product.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/kursinis/ptkursinis/model/Warehouse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/shopping-basket.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kursinis/ptkursinis/fxControllers/DiscussionPageController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kursinis/ptkursinis/fxControllers/StorePageController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kursinis/ptkursinis/model/Headphones.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kursinis/ptkursinis/model/Other.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kursinis/ptkursinis/model/Smartwatch.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/kursinis/ptkursinis/view/MainWindowView.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/kursinis/ptkursinis/view/StorePage.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/kursinis/ptkursinis/view/discussionPage.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/META-INF/persistence.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kursinis/ptkursinis/LaunchGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kursinis/ptkursinis/LaunchGUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kursinis/ptkursinis/fxControllers/CustomersPageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kursinis/ptkursinis/fxControllers/CustomersPageController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kursinis/ptkursinis/fxControllers/EmployeesPageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kursinis/ptkursinis/fxControllers/EmployeesPageController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/kursinis/ptkursinis/fxControllers/ItemPageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kursinis/ptkursinis/fxControllers/ItemPageController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/kursinis/ptkursinis/fxControllers/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kursinis/ptkursinis/fxControllers/LoginController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kursinis/ptkursinis/fxControllers/RegistrationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kursinis/ptkursinis/fxControllers/RegistrationController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kursinis/ptkursinis/fxControllers/StoreController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kursinis/ptkursinis/fxControllers/StoreController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kursinis/ptkursinis/fxControllers/StoreController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kursinis/ptkursinis/fxControllers/MainWindowController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/kursinis/ptkursinis/fxControllers/WarehousePageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kursinis/ptkursinis/fxControllers/WarehousePageController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/kursinis/ptkursinis/hibernateControllers/CustomHib.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kursinis/ptkursinis/hibernateControllers/CustomHib.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/kursinis/ptkursinis/hibernateControllers/GenericHib.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kursinis/ptkursinis/hibernateControllers/GenericHib.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kursinis/ptkursinis/model/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kursinis/ptkursinis/model/Customer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kursinis/ptkursinis/model/Employee.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kursinis/ptkursinis/model/Employee.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kursinis/ptkursinis/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kursinis/ptkursinis/model/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kursinis/ptkursinis/model/UserRole.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/kursinis/ptkursinis/view/customersPage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/kursinis/ptkursinis/view/customersPage.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/kursinis/ptkursinis/view/employeesPage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/kursinis/ptkursinis/view/employeesPage.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kursinis/ptkursinis/model/Charger.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kursinis/ptkursinis/model/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kursinis/ptkursinis/model/Product.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/com/kursinis/ptkursinis/view/itemsPage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/kursinis/ptkursinis/view/itemsPage.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/kursinis/ptkursinis/view/loginView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/kursinis/ptkursinis/view/loginView.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/kursinis/ptkursinis/view/storeView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/kursinis/ptkursinis/view/storeView.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/kursinis/ptkursinis/view/registrationView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/kursinis/ptkursinis/view/registrationView.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/kursinis/ptkursinis/view/storeView.fxml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/com/kursinis/ptkursinis/view/warehousesPage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/kursinis/ptkursinis/view/warehousesPage.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -46,10 +36,10 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="FxmlFile" />
         <option value="Enum" />
         <option value="Interface" />
         <option value="Class" />
+        <option value="FxmlFile" />
       </list>
     </option>
   </component>
@@ -67,31 +57,32 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/justu/IdeaProjects/PTKursinis/src/main/resources&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "master",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/Users/justu/IdeaProjects/PTKursinis/src/main/resources",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "run.code.analysis.last.selected.profile": "pProject Default",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;mysql&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "mysql"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="com.kursinis.ptkursinis.model" />
@@ -140,7 +131,7 @@
       <workItem from="1697741626815" duration="14514000" />
       <workItem from="1697789976666" duration="17469000" />
       <workItem from="1697874721956" duration="18676000" />
-      <workItem from="1697961977620" duration="2960000" />
+      <workItem from="1697961977620" duration="17915000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <option name="closed" value="true" />
@@ -158,7 +149,23 @@
       <option name="project" value="LOCAL" />
       <updated>1697581154474</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="second">
+      <option name="closed" value="true" />
+      <created>1697965391670</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1697965391671</updated>
+    </task>
+    <task id="LOCAL-00004" summary="second">
+      <option name="closed" value="true" />
+      <created>1697965481779</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1697965481779</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

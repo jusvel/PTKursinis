@@ -7,28 +7,34 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="300.0" style="-fx-background-color: linear-gradient(to right bottom, #eb984e, #e67e22);" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.kursinis.ptkursinis.fxControllers.RegistrationController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="300.0" style="-fx-background-color: #794848;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.kursinis.ptkursinis.fxControllers.RegistrationController">
    <children>
-      <TextField fx:id="usernameField" layoutX="25.0" layoutY="70.0" prefHeight="0.0" prefWidth="120.0" promptText="Username" style="-fx-background-color: #fdf2e9;" />
-      <Label layoutX="100.0" layoutY="13.0" text="Registration" textFill="#45260a">
+      <TextField fx:id="usernameField" layoutX="25.0" layoutY="70.0" prefHeight="0.0" prefWidth="120.0" promptText="Username" style="-fx-background-color: #fdf2f2;" />
+      <Label layoutX="100.0" layoutY="13.0" text="Registration" textFill="#fdf2f2">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <PasswordField fx:id="passwordField" layoutX="155.0" layoutY="70.0" maxWidth="120.0" prefHeight="0.0" prefWidth="120.0" promptText="Password" style="-fx-background-color: #fdf2e9;" />
-      <Label layoutX="25.0" layoutY="52.0" text="Username" textFill="#45260a" />
-      <Label layoutX="155.0" layoutY="52.0" text="Password" textFill="#45260a" />
-      <TextField fx:id="emailField" layoutX="25.0" layoutY="120.0" prefHeight="26.0" prefWidth="249.0" promptText="Example: john@gmail.com" style="-fx-background-color: #fdf2e9;" />
-      <Label layoutX="25.0" layoutY="102.0" text="Email address" textFill="#45260a" />
-      <TextField fx:id="firstNameField" layoutX="25.0" layoutY="170.0" prefHeight="0.0" prefWidth="120.0" promptText="John" style="-fx-background-color: #fdf2e9;" />
-      <PasswordField fx:id="lastNameField" layoutX="155.0" layoutY="170.0" maxWidth="120.0" prefHeight="0.0" prefWidth="120.0" promptText="Stevens" style="-fx-background-color: #fdf2e9;" />
-      <Label layoutX="25.0" layoutY="152.0" text="First Name" textFill="#45260a" />
-      <Label layoutX="155.0" layoutY="152.0" text="Last Name" textFill="#45260a" />
-      <TextField fx:id="numberField" layoutX="25.0" layoutY="220.0" prefHeight="26.0" prefWidth="249.0" promptText="+37063029179" style="-fx-background-color: #fdf2e9;" />
-      <Label layoutX="25.0" layoutY="202.0" text="Phone Number" textFill="#45260a" />
-      <TextField fx:id="addressField" layoutX="25.0" layoutY="270.0" prefHeight="26.0" prefWidth="249.0" promptText="51 Doe alėja" style="-fx-background-color: #fdf2e9;" />
-      <Label layoutX="25.0" layoutY="252.0" text="Address" textFill="#45260a" />
-      <Button layoutX="35.0" layoutY="330.0" mnemonicParsing="false" onAction="#cancelRegistration" prefWidth="100.0" style="-fx-background-color: #fdf2e9;" text="Cancel" textFill="#45260a" />
-      <Button layoutX="165.0" layoutY="330.0" mnemonicParsing="false" onAction="#signUp" prefWidth="100.0" style="-fx-background-color: #45260a;" text="Sign Up" textFill="#fdf2e9" />
+      <PasswordField fx:id="passwordField" layoutX="155.0" layoutY="70.0" maxWidth="120.0" prefHeight="0.0" prefWidth="120.0" promptText="Password" style="-fx-background-color: #fdf2f2;" />
+      <Label layoutX="25.0" layoutY="52.0" text="Username" textFill="#fdf2f2" />
+      <Label layoutX="155.0" layoutY="52.0" text="Password" textFill="#fdf2f2" />
+      <TextField fx:id="emailField" layoutX="25.0" layoutY="120.0" prefHeight="26.0" prefWidth="249.0" promptText="Example: john@gmail.com" style="-fx-background-color: #fdf2f2;" />
+      <Label layoutX="25.0" layoutY="102.0" text="Email address" textFill="#fdf2f2" />
+      <TextField fx:id="firstNameField" layoutX="25.0" layoutY="170.0" prefHeight="0.0" prefWidth="120.0" promptText="John" style="-fx-background-color: #fdf2f2;" />
+      <PasswordField fx:id="lastNameField" layoutX="155.0" layoutY="170.0" maxWidth="120.0" prefHeight="0.0" prefWidth="120.0" promptText="Stevens" style="-fx-background-color: #fdf2f2;" />
+      <Label layoutX="25.0" layoutY="152.0" text="First Name" textFill="#fdf2f2" />
+      <Label layoutX="155.0" layoutY="152.0" text="Last Name" textFill="#fdf2f2" />
+      <TextField fx:id="numberField" layoutX="25.0" layoutY="220.0" prefHeight="26.0" prefWidth="249.0" promptText="+37063029179" style="-fx-background-color: #fdf2f2;" />
+      <Label layoutX="25.0" layoutY="202.0" text="Phone Number" textFill="#fdf2f2" />
+      <TextField fx:id="addressField" layoutX="25.0" layoutY="270.0" prefHeight="26.0" prefWidth="249.0" promptText="51 Doe alėja" style="-fx-background-color: #fdf2f2;" />
+      <Label layoutX="25.0" layoutY="252.0" text="Address" textFill="#fdf2f2" />
+      <Button layoutX="35.0" layoutY="330.0" mnemonicParsing="false" onAction="#cancelRegistration" prefWidth="100.0" style="-fx-background-color: #fdf2f2;" text="Cancel" textFill="#794848">
+         <font>
+            <Font size="14.0" />
+         </font></Button>
+      <Button layoutX="165.0" layoutY="330.0" mnemonicParsing="false" onAction="#signUp" prefWidth="100.0" style="-fx-background-color: #593636;" text="Sign Up" textFill="#fdf2f2">
+         <font>
+            <Font size="14.0" />
+         </font></Button>
    </children>
 </AnchorPane>
