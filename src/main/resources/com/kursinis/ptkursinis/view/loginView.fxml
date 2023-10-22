@@ -9,24 +9,24 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="372.0" prefWidth="300.0" style="-fx-background-color: linear-gradient(to right bottom, #eb984e, #e67e22);" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.kursinis.ptkursinis.fxControllers.LoginController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="372.0" prefWidth="300.0" style="-fx-background-color: #794848;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.kursinis.ptkursinis.fxControllers.LoginController">
     <children>
-        <Label focusTraversable="false" layoutX="75.0" layoutY="29.0" prefHeight="18.0" prefWidth="150.0" style="-fx-alignment: center;" text="Login" textFill="#45260a">
+        <Label focusTraversable="false" layoutX="75.0" layoutY="29.0" prefHeight="18.0" prefWidth="150.0" style="-fx-alignment: center;" text="Login" textFill="#fdf2f2">
             <font>
                 <Font size="36.0" />
             </font>
         </Label>
-        <TextField fx:id="usernameField" layoutX="38.0" layoutY="106.0" promptText="Username" style="-fx-background-color: #fdf2e9;">
+        <TextField fx:id="usernameField" layoutX="38.0" layoutY="106.0" promptText="Username" style="-fx-background-color: #FDF2F2;">
             <font>
                 <Font size="18.0" />
             </font>
         </TextField>
-        <PasswordField fx:id="passwordField" layoutX="38.0" layoutY="160.0" promptText="Password" style="-fx-background-color: #fdf2e9;">
+        <PasswordField fx:id="passwordField" layoutX="38.0" layoutY="160.0" promptText="Password" style="-fx-background-color: #FDF2F2;">
             <font>
                 <Font size="18.0" />
             </font>
         </PasswordField>
-        <Button fx:id="loginButton" defaultButton="true" layoutX="66.0" layoutY="228.0" mnemonicParsing="false" onAction="#verifyLogin" prefHeight="40.0" prefWidth="168.0" style="-fx-border-radius: 30; -fx-background-color: #45260a;" text="Login" textAlignment="CENTER" textFill="#fdf2e9">
+        <Button fx:id="loginButton" defaultButton="true" layoutX="66.0" layoutY="228.0" mnemonicParsing="false" onAction="#verifyLogin" prefHeight="40.0" prefWidth="168.0" style="-fx-border-radius: 30; -fx-background-color: #593636;" text="Login" textFill="#fdf2f2">
             <font>
                 <Font size="18.0" />
             </font>
@@ -34,7 +34,7 @@
                 <Cursor fx:constant="HAND" />
             </cursor>
         </Button>
-      <Hyperlink layoutX="87.0" layoutY="287.0" onAction="#goToRegistration" text="New user? Sign Up" textFill="#45260a">
+      <Hyperlink layoutX="87.0" layoutY="287.0" onAction="#goToRegistration" text="New user? Sign Up" textFill="#fdf2f2">
          <font>
             <Font size="14.0" />
          </font>
