@@ -58,8 +58,6 @@ public class MainWindowController {
             vbox.getChildren().add(storeButton);
             vbox.getChildren().add(discussionButton);
             vbox.getChildren().add(logOutButton);
-        } else if(currentUser.getClass().getSimpleName().equals("Employee") && ((Employee) currentUser).getIsAdmin()){
-            //TODO: add employee page
         } else if(currentUser.getClass().getSimpleName().equals("Employee") && !((Employee) currentUser).getIsAdmin()){
             vbox.getChildren().remove(employeesButton);
         }

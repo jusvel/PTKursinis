@@ -39,7 +39,7 @@
    <right>
       <HBox prefHeight="800.0" prefWidth="684.0" BorderPane.alignment="CENTER">
          <children>
-            <VBox prefHeight="800.0" prefWidth="321.0">
+            <VBox fx:id="fieldVBox" prefHeight="800.0" prefWidth="321.0">
                <children>
                   <Label text="Name" textFill="#794848" />
                   <TextField fx:id="nameTextField" style="-fx-background-color: #FFF;" />

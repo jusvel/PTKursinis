@@ -34,49 +34,48 @@ public class LoginController implements Initializable{
     public Button loginButton;
     @FXML
     public void verifyLogin() throws IOException {
-        customHib = new CustomHib(entityManagerFactory);
         User u = customHib.getUserByCredentials(usernameField.getText(), passwordField.getText());
 
-        if(u!=null){
-            loadStore(u);
-        } else {
-            JavaFxCustomUtils.generateAlert(Alert.AlertType.INFORMATION, "Login INFO", "Wrong data", "Please check credentials, no such user");
-        }
-    }
-
-    private void loadEmployeeStore(User u) {
-        System.out.println(u.getClass());
+        if(u!=null) loadStore(u);
+        else JavaFxCustomUtils.showError("Wrong credentials");
     }
 
     private void loadStore(User u) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(LaunchGUI.class.getResource("view/MainWindowView.fxml"));
         Parent parent = fxmlLoader.load();
-        MainWindowController storeController = fxmlLoader.getController();
-        storeController.setData(entityManagerFactory, u);
         Scene scene = new Scene(parent);
+
+        MainWindowController mainWindowController = fxmlLoader.getController();
+        mainWindowController.setData(entityManagerFactory, u);
+
         Stage stage = (Stage) usernameField.getScene().getWindow();
         stage.setTitle("Shop");
         JavaFxCustomUtils.setIcon(stage);
+        stage.setResizable(false);
         stage.setScene(scene);
         stage.show();
         stage.centerOnScreen();
     }
 
     @FXML
-    public void goToRegistration(ActionEvent event) throws IOException {
+    public void goToRegistration() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(LaunchGUI.class.getResource("view/registrationView.fxml"));
         Parent parent = fxmlLoader.load();
-        RegistrationController registrationController = fxmlLoader.getController();
         Scene scene = new Scene(parent);
+
+        RegistrationController registrationController = fxmlLoader.getController();
         registrationController.setData(scene, entityManagerFactory);
+
         Stage stage = (Stage) usernameField.getScene().getWindow();
         stage.setTitle("Registration");
         stage.setScene(scene);
         stage.show();
         stage.centerOnScreen();
     }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         entityManagerFactory = Persistence.createEntityManagerFactory("kursinis-unit");
+        customHib = new CustomHib(entityManagerFactory);
     }
 }

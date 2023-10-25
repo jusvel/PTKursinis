@@ -2,8 +2,12 @@ package com.kursinis.ptkursinis.model;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 import java.io.Serializable;
+import java.util.Collection;
+import java.util.List;
 
 @Entity
 @Table(name="users")
@@ -30,6 +34,15 @@ public abstract class User implements Serializable {
     @Column(name = "DTYPE", insertable = false, updatable = false)
     String type;
 
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    @LazyCollection(LazyCollectionOption.FALSE)
+    List<Post> posts;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    @LazyCollection(LazyCollectionOption.FALSE)
+    List<PostComment> comments;
+
+
     public User(String username, String password, String email, String firstName, String lastName, String phoneNumber) {
         this.username = username;
         this.password = password;
@@ -38,4 +51,5 @@ public abstract class User implements Serializable {
         this.lastName = lastName;
         this.phoneNumber = phoneNumber;
     }
+
 }

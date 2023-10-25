@@ -14,9 +14,11 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.VBox;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -28,6 +30,7 @@ public class WarehousePageController implements PageController, Initializable {
     public TextField addressTextField;
     public ChoiceBox selectionChoiceBox;
     public TextField searchTextField;
+    public VBox fieldVBox;
     private ObservableList<Warehouse> warehouseData = FXCollections.observableArrayList();
     Warehouse selectedWarehouse;
 
@@ -78,6 +81,10 @@ public class WarehousePageController implements PageController, Initializable {
     }
 
     public void addWarehouse() {
+        if(JavaFxCustomUtils.isAnyTextFieldEmpty(fieldVBox)) {
+            JavaFxCustomUtils.showError("Please fill all fields");
+            return;
+        }
         Warehouse warehouse = new Warehouse(nameTextField.getText(), addressTextField.getText());
         customHib.create(warehouse);
         loadWarehouses();
@@ -85,12 +92,21 @@ public class WarehousePageController implements PageController, Initializable {
     }
 
     public void deleteWarehouse() {
+        //TODO send products of a warehouse to another warehouse?
+        if(selectedWarehouse == null) {
+            JavaFxCustomUtils.showError("Please select a warehouse");
+            return;
+        }
         customHib.delete(Warehouse.class, selectedWarehouse.getId());
         loadWarehouses();
         deselect();
     }
 
     public void updateWarehouse() {
+        if(selectedWarehouse == null) {
+            JavaFxCustomUtils.showError("Please select a warehouse");
+            return;
+        }
         selectedWarehouse.setName(nameTextField.getText());
         selectedWarehouse.setAddress(addressTextField.getText());
         customHib.update(selectedWarehouse);

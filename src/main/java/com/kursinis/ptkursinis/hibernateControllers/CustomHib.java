@@ -1,8 +1,7 @@
 package com.kursinis.ptkursinis.hibernateControllers;
 
 import com.kursinis.ptkursinis.helpers.StringHelpers;
-import com.kursinis.ptkursinis.model.Product;
-import com.kursinis.ptkursinis.model.User;
+import com.kursinis.ptkursinis.model.*;
 import jakarta.persistence.*;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
@@ -13,23 +12,6 @@ import java.util.List;
 public class CustomHib<T> extends GenericHib{
     public CustomHib(EntityManagerFactory entityManagerFactory) {
         super(entityManagerFactory);
-    }
-
-    public List<String> getDistinctTypes(){
-        EntityManager em = null;
-        try{
-            em = getEntityManager();
-            CriteriaBuilder cb = em.getCriteriaBuilder();
-            CriteriaQuery<String> cq = cb.createQuery(String.class);
-            Root<Product> root = cq.from(Product.class);
-            cq.select(root.get("class").as(String.class)).distinct(true);
-            TypedQuery<String> query = em.createQuery(cq);
-            return query.getResultList();
-        } catch (NoResultException e) {
-            return null;
-        } finally {
-            if (em != null) em.close();
-        }
     }
 
     public User getUserByCredentials(String username, String password) {
@@ -140,4 +122,24 @@ public class CustomHib<T> extends GenericHib{
             if (em != null) em.close();
         }
     }
+
+    public Cart getCartByUser(User currentUser) {
+        EntityManager em = null;
+        try{
+            em = getEntityManager();
+            CriteriaBuilder cb = em.getCriteriaBuilder();
+            CriteriaQuery<Cart> cbQuery = cb.createQuery(Cart.class);
+            Root<Cart> root= cbQuery.from(Cart.class);
+            cbQuery.select(root).where(cb.equal(root.get("user"),currentUser));
+
+            Query query = em.createQuery(cbQuery);
+
+            return (Cart) query.getSingleResult();
+        } catch (NoResultException e) {
+            return null;
+        } finally {
+            if (em != null) em.close();
+        }
+    }
+
 }

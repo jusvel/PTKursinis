@@ -69,6 +69,7 @@ public class GenericHib<T> {
     public void delete(Class<T> entityClass, int id) {
         EntityManager em = null;
         try {
+
             em = getEntityManager();
             em.getTransaction().begin();
             var object = em.find(entityClass, id);

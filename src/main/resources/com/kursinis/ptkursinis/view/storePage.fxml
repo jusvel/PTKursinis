@@ -6,6 +6,7 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
@@ -14,13 +15,31 @@
    <children>
       <VBox prefHeight="200.0" prefWidth="400.0">
          <children>
+            <Label alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Products" textAlignment="CENTER" textFill="#794848">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
             <TableView fx:id="productsTableView" prefHeight="500.0" prefWidth="200.0">
               <columns>
-                <TableColumn prefWidth="75.0" text="C1" />
-                <TableColumn prefWidth="75.0" text="C2" />
+                <TableColumn prefWidth="110.0" text="Brand">
+                 <cellValueFactory>
+                    <PropertyValueFactory property="brand" />
+                 </cellValueFactory>
+              </TableColumn>
+                 <TableColumn prefWidth="200.0" text="Name">
+                    <cellValueFactory>
+                       <PropertyValueFactory property="name" />
+                    </cellValueFactory>
+                 </TableColumn>
+                 <TableColumn minWidth="0.0" prefWidth="50.0" text="Price">
+                    <cellValueFactory>
+                       <PropertyValueFactory property="price" />
+                    </cellValueFactory>
+                 </TableColumn>
               </columns>
             </TableView>
-            <Button mnemonicParsing="false" onAction="#addToCart" prefWidth="379.2" style="-fx-background-color: #593636; -fx-cursor: hand;" text="Add to cart" textFill="#fdf2f2">
+            <Button alignment="CENTER" mnemonicParsing="false" onAction="#addToCart" prefWidth="379.2" style="-fx-background-color: #593636; -fx-cursor: hand;" text="Add to cart" textAlignment="CENTER" textFill="#fdf2f2">
                <font>
                   <Font size="14.0" />
                </font>
@@ -41,7 +60,7 @@
                   <Font size="14.0" />
                </font>
             </TextField>
-            <Button mnemonicParsing="false" onAction="#searchProduct" prefWidth="379.2" style="-fx-background-color: #593636; -fx-cursor: hand;" text="Search" textFill="#fdf2f2">
+            <Button alignment="CENTER" mnemonicParsing="false" onAction="#searchProduct" prefWidth="379.2" style="-fx-background-color: #593636; -fx-cursor: hand;" text="Search" textAlignment="CENTER" textFill="#fdf2f2">
                <font>
                   <Font size="14.0" />
                </font>
@@ -49,7 +68,7 @@
                   <Insets top="10.0" />
                </VBox.margin>
             </Button>
-            <Button mnemonicParsing="false" onAction="#resetSearch" prefWidth="379.2" style="-fx-background-color: #593636; -fx-cursor: hand;" text="Reset search" textFill="#fdf2f2">
+            <Button alignment="CENTER" mnemonicParsing="false" onAction="#resetSearch" prefWidth="379.2" style="-fx-background-color: #593636; -fx-cursor: hand;" text="Reset search" textAlignment="CENTER" textFill="#fdf2f2">
                <font>
                   <Font size="14.0" />
                </font>
@@ -72,7 +91,7 @@
                   <Insets top="351.0" />
                </VBox.margin>
             </Label>
-            <Button alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#proceedToCheckout" style="-fx-background-color: #593636; -fx-cursor: hand;" text="Proceed to checkout" textFill="#fdf2f2">
+            <Button alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#proceedToCheckout" style="-fx-background-color: #593636; -fx-cursor: hand;" text="Proceed to checkout" textAlignment="CENTER" textFill="#fdf2f2">
                <font>
                   <Font size="14.0" />
                </font>
@@ -84,13 +103,15 @@
       </VBox>
       <VBox prefHeight="200.0" prefWidth="400.0">
          <children>
+            <Label alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Cart" textAlignment="CENTER" textFill="#794848">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
             <TableView fx:id="cartTableView" prefHeight="500.0" prefWidth="200.0">
-              <columns>
-                <TableColumn prefWidth="75.0" text="C1" />
-                <TableColumn prefWidth="75.0" text="C2" />
-              </columns>
+
             </TableView>
-            <Button mnemonicParsing="false" onAction="#removeProduct" prefWidth="379.2" style="-fx-background-color: #593636; -fx-cursor: hand;" text="Remove product from cart" textFill="#fdf2f2">
+            <Button alignment="CENTER" mnemonicParsing="false" onAction="#removeProduct" prefWidth="379.2" style="-fx-background-color: #593636; -fx-cursor: hand;" text="Remove product from cart" textAlignment="CENTER" textFill="#fdf2f2">
                <font>
                   <Font size="14.0" />
                </font>
@@ -98,7 +119,7 @@
                   <Insets top="20.0" />
                </VBox.margin>
             </Button>
-            <Button mnemonicParsing="false" onAction="#removeAllProcuts" prefWidth="379.2" style="-fx-background-color: #593636; -fx-cursor: hand;" text="Remove all products" textFill="#fdf2f2">
+            <Button alignment="CENTER" mnemonicParsing="false" onAction="#removeAllProcuts" prefWidth="379.2" style="-fx-background-color: #593636; -fx-cursor: hand;" text="Remove all products" textAlignment="CENTER" textFill="#fdf2f2">
                <font>
                   <Font size="14.0" />
                </font>

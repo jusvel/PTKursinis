@@ -5,8 +5,11 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
@@ -25,9 +28,10 @@ public abstract class Product implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "warehouse_id")
-    private Warehouse warehouse;
+    Warehouse warehouse;
     @Column(name = "DTYPE", insertable = false, updatable = false)
     String type;
+
 
     public Product(String name, double price, String brand, Warehouse warehouse) {
         this.name = name;

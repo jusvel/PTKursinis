@@ -49,48 +49,27 @@ public class EmployeesPageController implements PageController, Initializable {
         addSelectionListener();
     }
 
-    private void loadEmployees() {
-        employeeData.clear();
-        employeeData.addAll(customHib.getAllRecords(Employee.class));
-    }
-
-    private void addSelectionListener() {
-        employeeTable.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
-            @Override
-            public void changed(ObservableValue observableValue, Object oldValue, Object newValue) {
-                if(employeeTable.getSelectionModel().getSelectedItem() != null) {
-                    selectedEmployee = employeeTable.getSelectionModel().getSelectedItem();
-                    boolean isAdmin = (selectedEmployee.getIsAdmin()!=null) ? selectedEmployee.getIsAdmin() : false;
-
-                    usernameField.setText(selectedEmployee.getUsername());
-                    passwordField.setText(selectedEmployee.getPassword());
-                    emailField.setText(selectedEmployee.getEmail());
-                    firstnameField.setText(selectedEmployee.getFirstName());
-                    lastnameField.setText(selectedEmployee.getLastName());
-                    numberField.setText(selectedEmployee.getPhoneNumber());
-                    employeeIdField.setText(String.valueOf(selectedEmployee.getEmployeeId()));
-                    isAdminCheckBox.setSelected(isAdmin);
-                    employmentDateDatePicker.setValue(selectedEmployee.getEmploymentDate());
-                    System.out.println(selectedEmployee.toString());
-                }
-            }
-        });
-    }
-
-
-
     @Override
     public void setData(EntityManagerFactory entityManagerFactory, User currentUser) {
         this.entityManagerFactory = entityManagerFactory;
         this.currentUser = currentUser;
         customHib = new CustomHib(entityManagerFactory);
         loadEmployees();
+        setupSelectionBox();
+    }
+
+    private void setupSelectionBox() {
         employeeTable.getColumns().forEach(employeeTableColumn -> {
             columnSelectionBox.getItems().addAll(employeeTableColumn.getText());
         });
         columnSelectionBox.getItems().remove("Employment Date");
         columnSelectionBox.getItems().remove("Is Admin");
         columnSelectionBox.getItems().remove("Type");
+    }
+
+    private void loadEmployees() {
+        employeeData.clear();
+        employeeData.addAll(customHib.getAllRecords(Employee.class));
     }
 
     public void deselectEmployee() {
@@ -180,5 +159,28 @@ public class EmployeesPageController implements PageController, Initializable {
         columnSelectionBox.getSelectionModel().clearSelection();
         searchField.setText("");
         loadEmployees();
+    }
+
+    private void addSelectionListener() {
+        employeeTable.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
+            @Override
+            public void changed(ObservableValue observableValue, Object oldValue, Object newValue) {
+                if(employeeTable.getSelectionModel().getSelectedItem() != null) {
+                    selectedEmployee = employeeTable.getSelectionModel().getSelectedItem();
+                    boolean isAdmin = (selectedEmployee.getIsAdmin()!=null) ? selectedEmployee.getIsAdmin() : false;
+
+                    usernameField.setText(selectedEmployee.getUsername());
+                    passwordField.setText(selectedEmployee.getPassword());
+                    emailField.setText(selectedEmployee.getEmail());
+                    firstnameField.setText(selectedEmployee.getFirstName());
+                    lastnameField.setText(selectedEmployee.getLastName());
+                    numberField.setText(selectedEmployee.getPhoneNumber());
+                    employeeIdField.setText(String.valueOf(selectedEmployee.getEmployeeId()));
+                    isAdminCheckBox.setSelected(isAdmin);
+                    employmentDateDatePicker.setValue(selectedEmployee.getEmploymentDate());
+                    System.out.println(selectedEmployee.toString());
+                }
+            }
+        });
     }
 }

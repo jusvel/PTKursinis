@@ -123,13 +123,12 @@ public class ItemPageController implements PageController, Initializable {
             JavaFxCustomUtils.showError("Please select a warehouse");
             return;
         }
-        Warehouse selectedWarehouse = allWarehouses.get(warehouseSelectChoiceBox.getSelectionModel().getSelectedIndex());
-        Warehouse warehouse = (Warehouse) customHib.getEntityById(Warehouse.class, selectedWarehouse.getId());
-        String name = nameTextField.getText();
-        String brand = brandTextField.getText();
-        double price = Double.parseDouble(priceTextField.getText());
 
         try{
+        Warehouse warehouse = allWarehouses.get(warehouseSelectChoiceBox.getSelectionModel().getSelectedIndex());
+            String name = nameTextField.getText();
+            String brand = brandTextField.getText();
+            double price = Double.parseDouble(priceTextField.getText());
             if(productTypeChoiceBox.getSelectionModel().getSelectedItem().equals("Phone")){
                 customHib.create(new Phone(name,price,brand, warehouse, osTextField.getText(),Double.parseDouble(inchesTextField.getText()), resolutionTextField.getText(), Integer.parseInt(batteryTextField.getText()), Integer.parseInt(ramTextField.getText()), Integer.parseInt(weightTextField.getText()), Integer.parseInt(storageTextField.getText())));
             } else if(productTypeChoiceBox.getSelectionModel().getSelectedItem().equals("Smartwatch")){
@@ -144,6 +143,7 @@ public class ItemPageController implements PageController, Initializable {
             }
         } catch (Exception e) {
             JavaFxCustomUtils.showError("Please fill out all fields!");
+            return;
         }
         loadProducts();
         loadWarehouses();
@@ -151,6 +151,10 @@ public class ItemPageController implements PageController, Initializable {
     }
 
     public void deleteProduct() {
+        if(selectedProduct == null){
+            JavaFxCustomUtils.showError("Please select a product");
+            return;
+        }
         customHib.deleteFromWarehouse(selectedProduct);
         deselect();
         loadProducts();
@@ -188,6 +192,7 @@ public class ItemPageController implements PageController, Initializable {
         } catch (Exception e) {
             JavaFxCustomUtils.showError("Please fill out all fields!");
             e.printStackTrace();
+            return;
         }
 
         loadProducts();

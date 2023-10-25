@@ -23,7 +23,7 @@ public class Warehouse {
 
     @OneToMany(mappedBy = "warehouse", cascade = CascadeType.ALL)
     @LazyCollection(LazyCollectionOption.FALSE)
-    private List<Product> productsInWarehouse;
+    List<Product> productsInWarehouse;
 
     public Warehouse(String name, String address) {
         this.name = name;
