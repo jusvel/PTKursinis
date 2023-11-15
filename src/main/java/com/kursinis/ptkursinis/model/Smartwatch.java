@@ -14,7 +14,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Smartwatch extends Product{
-    int diameter;
+    private int diameter;
 
     public Smartwatch(String name, double price, String brand, Warehouse warehouse, int diameter) {
         super(name, price, brand, warehouse);

@@ -124,6 +124,7 @@ public class CustomersPageController implements Initializable, PageController{
     }
 
     public void deleteSelectedCustomer() {
+        //cascade pakeist databaseje
         if(selectedCustomer == null){
             JavaFxCustomUtils.showError("Please select a customer");
             return;

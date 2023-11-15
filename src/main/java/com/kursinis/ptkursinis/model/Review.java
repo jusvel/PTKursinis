@@ -11,23 +11,22 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
-public class PostComment {
+public class Review {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-
-    private String body;
+    int id;
+    private double rating;
+    private String comment;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
     User user;
-
     @ManyToOne
-    @JoinColumn(name = "post_id")
-    Post post;
+    @JoinColumn(name = "product_id")
+    Product product;
 
     @Override
     public String toString() {
-        return body + "\nBy: " + user.getUsername();
+        return user.username + ": " + rating + "/5.0" + " - " + comment;
     }
 }

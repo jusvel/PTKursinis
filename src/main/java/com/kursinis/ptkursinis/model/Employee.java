@@ -16,11 +16,11 @@ import java.time.LocalDate;
 @Setter
 public class Employee extends User{
     @Column(name = "employee_id")
-    Integer employeeId;
+    private Integer employeeId;
     @Column(name = "employment_date")
-    LocalDate employmentDate;
+    private LocalDate employmentDate;
     @Column(name = "is_admin")
-    Boolean isAdmin;
+    private Boolean isAdmin;
 
     public Employee(String username, String password, String email, String firstName, String lastName, String phoneNumber, Integer employeeId, LocalDate employmentDate, Boolean isAdmin) {
         super(username, password, email, firstName, lastName, phoneNumber);

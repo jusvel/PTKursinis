@@ -14,13 +14,13 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Phone extends Product{
-    String os;
-    double inches;
-    String resolution;
-    int battery;
-    int ram;
-    int weight;
-    int storage;
+    private String os;
+    private double inches;
+    private String resolution;
+    private int battery;
+    private int ram;
+    private int weight;
+    private int storage;
 
     @Override
     public String toString() {

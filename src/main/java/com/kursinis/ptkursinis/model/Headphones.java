@@ -14,7 +14,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Headphones extends Product{
-    String connectionType;
+    private String connectionType;
 
     public Headphones(String name, double price, String brand, Warehouse warehouse, String connectionType) {
         super(name, price, brand, warehouse);

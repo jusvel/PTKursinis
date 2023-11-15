@@ -19,9 +19,9 @@ import java.util.List;
 public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    int id;
-    String title;
-    String body;
+    private int id;
+    private String title;
+    private String body;
 
     @ManyToOne
     @JoinColumn(name = "user_id")

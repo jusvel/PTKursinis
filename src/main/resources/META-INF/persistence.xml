@@ -7,7 +7,7 @@
     <properties>
       <property name="jakarta.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
       <property name="jakarta.persistence.jdbc.url"
-                value="jdbc:mysql://localhost:3306/testas?createDatabaseIfNotExist=true&amp;useUnicode=true&amp;characterEncoding=UTF-8"/>
+                value="jdbc:mysql://localhost:3306/kursinisPT?createDatabaseIfNotExist=true&amp;useUnicode=true&amp;characterEncoding=UTF-8"/>
       <property name="jakarta.persistence.jdbc.user" value="root"/>
       <property name="jakarta.persistence.jdbc.password" value=""/>
       <property name="hibernate.hbm2ddl.auto" value="update"/>
