@@ -11,24 +11,24 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: #FDF2F2;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.kursinis.ptkursinis.fxControllers.ReviewsPageController">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1100.0" style="-fx-background-color: #FDF2F2;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.kursinis.ptkursinis.fxControllers.ReviewsPageController">
    <padding>
       <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
    </padding>
    <children>
-      <TableView fx:id="productTable" prefHeight="699.0" prefWidth="402.0">
+      <TableView fx:id="productTable" prefHeight="699.0" prefWidth="630.0">
           <columns>
               <TableColumn prefWidth="110.0" text="Brand">
                   <cellValueFactory>
                       <PropertyValueFactory property="brand" />
                   </cellValueFactory>
               </TableColumn>
-              <TableColumn prefWidth="170.0" text="Name">
+              <TableColumn prefWidth="135.20001983642578" text="Name">
                   <cellValueFactory>
                       <PropertyValueFactory property="name" />
                   </cellValueFactory>
               </TableColumn>
-              <TableColumn minWidth="0.0" prefWidth="50.0" text="Price">
+              <TableColumn minWidth="0.0" prefWidth="85.5999755859375" text="Price">
                   <cellValueFactory>
                       <PropertyValueFactory property="price" />
                   </cellValueFactory>

@@ -22,6 +22,22 @@ public class JavaFxCustomUtils {
         alert.showAndWait();
     }
 
+    public static double showRatingDialog() {
+        String ratingString = JavaFxCustomUtils.showTextInputDialog("Rate", "Please enter your rating (0-5)");
+        double rating = 0;
+        try{
+            rating = Double.parseDouble(ratingString);
+        } catch (NumberFormatException e){
+            JavaFxCustomUtils.showError("Please enter a valid number");
+            return showRatingDialog();
+        }
+        if(rating < 0 || rating > 5){
+            JavaFxCustomUtils.showError("Please enter a number between 0 and 5");
+            return showRatingDialog();
+        }
+        return rating;
+    }
+
     public static void showError(String message) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Error");

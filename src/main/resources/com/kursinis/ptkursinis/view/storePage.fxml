@@ -22,12 +22,12 @@
             </Label>
             <TableView fx:id="productsTableView" prefHeight="500.0" prefWidth="200.0">
               <columns>
-                <TableColumn prefWidth="110.0" text="Brand">
+                <TableColumn prefWidth="70.0" text="Brand">
                  <cellValueFactory>
                     <PropertyValueFactory property="brand" />
                  </cellValueFactory>
               </TableColumn>
-                 <TableColumn prefWidth="200.0" text="Name">
+                 <TableColumn prefWidth="150.0" text="Name">
                     <cellValueFactory>
                        <PropertyValueFactory property="name" />
                     </cellValueFactory>

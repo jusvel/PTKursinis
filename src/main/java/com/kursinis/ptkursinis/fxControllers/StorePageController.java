@@ -40,6 +40,7 @@ public class StorePageController implements PageController, Initializable {
     TableColumn<CartProduct, String> nameColumn = new TableColumn<>("Name");
     TableColumn<CartProduct, Double> priceColumn = new TableColumn<>("Price");
     TableColumn<CartProduct, Integer> quantityColumn = new TableColumn<>("Quantity");
+    TableColumn<Product, Double> avgRatingColumn = new TableColumn<>("Rating");
 
 
 
@@ -182,7 +183,7 @@ public class StorePageController implements PageController, Initializable {
         cartProductsData.addListener((ListChangeListener<? super CartProduct>) c -> {
             double price = 0;
             for(CartProduct cartProduct : cartProductsData){
-                price += cartProduct.getProduct().getPrice();
+                price += cartProduct.getProduct().getPrice()* cartProduct.getQuantity();
             }
             priceLabel.setText("Total Price: $" + String.format("%.2f", price));
         });
@@ -224,9 +225,24 @@ public class StorePageController implements PageController, Initializable {
             return new SimpleIntegerProperty(cartProduct.getQuantity()).asObject();
         });
 
+        avgRatingColumn.setCellValueFactory(cellData -> {
+            Product product = cellData.getValue();
+            double avgRating = calculateAverageRating(product);
+            return new SimpleDoubleProperty(avgRating).asObject();
+        });
+        productsTableView.getColumns().add(avgRatingColumn);
         cartTableView.getColumns().add(brandColumn);
         cartTableView.getColumns().add(nameColumn);
         cartTableView.getColumns().add(priceColumn);
         cartTableView.getColumns().add(quantityColumn);
+    }
+
+    private double calculateAverageRating(Product product) {
+        double averageRating = 0;
+        for(Review review : product.getReviews()){
+            averageRating+= review.getRating();
+        }
+        averageRating/=product.getReviews().size();
+        return averageRating;
     }
 }

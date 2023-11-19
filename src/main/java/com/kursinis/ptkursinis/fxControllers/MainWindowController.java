@@ -24,6 +24,7 @@ public class MainWindowController {
     public Button warehousesButton;
     public Button customersButton;
     public Button logOutButton;
+    public Button reviewsButton;
     private EntityManagerFactory entityManagerFactory;
     private User currentUser;
 
@@ -56,6 +57,7 @@ public class MainWindowController {
         if(currentUser.getClass().getSimpleName().equals("Customer")){
             vbox.getChildren().removeAll(vbox.getChildren());
             vbox.getChildren().add(storeButton);
+            vbox.getChildren().add(reviewsButton);
             vbox.getChildren().add(discussionButton);
             vbox.getChildren().add(logOutButton);
         } else if(currentUser.getClass().getSimpleName().equals("Employee") && !((Employee) currentUser).getIsAdmin()){

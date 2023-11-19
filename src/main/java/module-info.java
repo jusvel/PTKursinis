@@ -6,7 +6,6 @@ module com.kursinis.ptkursinis {
     requires org.hibernate.orm.core;
     requires jakarta.persistence;
 
-
     opens com.kursinis.ptkursinis to javafx.fxml;
     exports com.kursinis.ptkursinis;
     opens com.kursinis.ptkursinis.model to javafx.fxml, org.hibernate.orm.core;

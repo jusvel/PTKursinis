@@ -41,7 +41,6 @@ public class ReviewsPageController implements PageController, Initializable {
     private void loadProducts() {
         productData.clear();
         productData.addAll(customHib.getAllRecords(Product.class));
-
     }
 
     @Override
@@ -63,7 +62,7 @@ public class ReviewsPageController implements PageController, Initializable {
             public void changed(ObservableValue<? extends Product> observable, Product oldValue, Product newValue) {
                 selectedProduct = newValue;
                 if(selectedProduct!=null){
-                    calculateAverageRating(selectedProduct);
+                    reviewLabel.setText("Avarage rating: " + calculateAverageRating(selectedProduct));
                     reviewsList.setItems(FXCollections.observableArrayList(selectedProduct.getReviews()));
                 }
             }
@@ -76,12 +75,12 @@ public class ReviewsPageController implements PageController, Initializable {
             averageRating+= review.getRating();
         }
         averageRating/=product.getReviews().size();
-        reviewLabel.setText("Average rating: " + averageRating);
         return averageRating;
     }
 
 
     public void rate(ActionEvent actionEvent) {
+        int selectedIndex = productTable.getSelectionModel().getSelectedIndex();
         if (selectedProduct == null) {
             JavaFxCustomUtils.showError("Please select a product");
             return;
@@ -93,31 +92,16 @@ public class ReviewsPageController implements PageController, Initializable {
         Review review = new Review();
         review.setProduct(selectedProduct);
         review.setUser(currentUser);
-        review.setRating(showRatingDialog());
+        review.setRating(JavaFxCustomUtils.showRatingDialog());
         review.setComment(JavaFxCustomUtils.showTextInputDialog("Comment", "Please enter your comment"));
         customHib.create(review);
         selectedProduct.getReviews().add(review);
-        customHib.update(selectedProduct);
-        reviewsList.setItems(FXCollections.observableArrayList(selectedProduct.getReviews()));
-        reviewLabel.setText("Average rating: " + calculateAverageRating(selectedProduct));
         loadProducts();
+        productTable.getSelectionModel().select(selectedIndex);
+        reviewLabel.setText("Average rating: " + calculateAverageRating(productTable.getItems().get(selectedIndex)));
+    }
 
-    }
-    private double showRatingDialog() {
-        String ratingString = JavaFxCustomUtils.showTextInputDialog("Rate", "Please enter your rating (0-5)");
-        double rating = 0;
-        try{
-            rating = Double.parseDouble(ratingString);
-        } catch (NumberFormatException e){
-            JavaFxCustomUtils.showError("Please enter a valid number");
-            return showRatingDialog();
-        }
-        if(rating < 0 || rating > 5){
-            JavaFxCustomUtils.showError("Please enter a number between 0 and 5");
-            return showRatingDialog();
-        }
-        return rating;
-    }
+
 
     private boolean selectedProductAlreadyReviewed() {
         for(Review review : selectedProduct.getReviews()){
