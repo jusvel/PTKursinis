@@ -9,11 +9,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a8b7cbe6-0520-4e61-818a-5d5dd426460d" name="Changes" comment="replaced the old reviews with the new reviews">
+    <list default="true" id="a8b7cbe6-0520-4e61-818a-5d5dd426460d" name="Changes" comment="ui set up for chat, before back end implementation">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kursinis/ptkursinis/model/Message.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/kursinis/ptkursinis/fxControllers/MyOrdersPageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kursinis/ptkursinis/fxControllers/MyOrdersPageController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/kursinis/ptkursinis/fxControllers/OrdersPageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kursinis/ptkursinis/fxControllers/OrdersPageController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/kursinis/ptkursinis/helpers/JavaFxCustomUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kursinis/ptkursinis/helpers/JavaFxCustomUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kursinis/ptkursinis/hibernateControllers/CustomHib.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kursinis/ptkursinis/hibernateControllers/CustomHib.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/kursinis/ptkursinis/view/coolReviewsPage.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/kursinis/ptkursinis/view/myOrdersPage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/kursinis/ptkursinis/view/myOrdersPage.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -371,7 +375,7 @@
       <workItem from="1701884290984" duration="8843000" />
       <workItem from="1701962572076" duration="5935000" />
       <workItem from="1702118379436" duration="93000" />
-      <workItem from="1702118557300" duration="19324000" />
+      <workItem from="1702118557300" duration="25762000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <option name="closed" value="true" />
@@ -461,7 +465,15 @@
       <option name="project" value="LOCAL" />
       <updated>1702137505023</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="ui set up for chat, before back end implementation">
+      <option name="closed" value="true" />
+      <created>1702140036074</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1702140036074</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -488,7 +500,8 @@
     <MESSAGE value="added my orders and orders page" />
     <MESSAGE value="Implemented review and reply functionality in CoolReviewsController. Users can now leave reviews for products and reply to existing reviews. Also fixed issue with deleting top-level comments and their child comments.&#10;&#10;This is before implementing them to replace the old reviews" />
     <MESSAGE value="replaced the old reviews with the new reviews" />
-    <option name="LAST_COMMIT_MESSAGE" value="replaced the old reviews with the new reviews" />
+    <MESSAGE value="ui set up for chat, before back end implementation" />
+    <option name="LAST_COMMIT_MESSAGE" value="ui set up for chat, before back end implementation" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

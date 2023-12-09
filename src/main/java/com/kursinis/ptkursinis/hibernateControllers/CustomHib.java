@@ -240,4 +240,23 @@ public class CustomHib<T> extends GenericHib{
             if(em != null) em.close();
         }
     }
+
+    public List<Message> getMessagesOfOrder(Order order) {
+        EntityManager em = null;
+        try{
+            em = getEntityManager();
+            CriteriaBuilder cb = em.getCriteriaBuilder();
+            CriteriaQuery<Message> cbQuery = cb.createQuery(Message.class);
+            Root<Message> root= cbQuery.from(Message.class);
+            cbQuery.select(root).where(cb.equal(root.get("order"),order));
+
+            Query query = em.createQuery(cbQuery);
+
+            return query.getResultList();
+        } catch (NoResultException e) {
+            return null;
+        } finally {
+            if (em != null) em.close();
+        }
+    }
 }

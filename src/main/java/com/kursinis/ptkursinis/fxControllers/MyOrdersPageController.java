@@ -7,13 +7,14 @@ import jakarta.persistence.EntityManagerFactory;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableCell;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.geometry.Pos;
+import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 
 import java.net.URL;
+import java.time.LocalDateTime;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import static com.kursinis.ptkursinis.model.OrderStatus.*;
@@ -21,8 +22,6 @@ import static com.kursinis.ptkursinis.model.OrderStatus.*;
 public class MyOrdersPageController implements PageController, Initializable {
     public TableView<Order> ordersTableView;
     private final ObservableList<Order> ordersData = javafx.collections.FXCollections.observableArrayList();
-    public Button payForOrderButton;
-    public Button cancelOrderButton;
 
     TableColumn<Order, String> productsColumn = new TableColumn<>("Products");
     TableColumn<Order, String> deliveryAddressColumn = new TableColumn<>("Delivery Address");
@@ -39,10 +38,7 @@ public class MyOrdersPageController implements PageController, Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        cancelOrderButton.setDisable(true);
-        payForOrderButton.setDisable(true);
         ordersTableView.setItems(ordersData);
-
         fixColumns();
     }
 
@@ -51,50 +47,6 @@ public class MyOrdersPageController implements PageController, Initializable {
         this.entityManagerFactory = entityManagerFactory;
         this.currentUser = currentUser;
         customHib = new CustomHib(this.entityManagerFactory);
-        loadOrders();
-        addTableSelectionListener(ordersTableView);
-    }
-
-    private void addTableSelectionListener(TableView<Order> ordersTableView) {
-        ordersTableView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-            selectedOrder = newValue;
-            if(selectedOrder == null){
-                return;
-            }
-            if(selectedOrder.getPaymentStatus().equals(PaymentStatus.PAID)){
-                payForOrderButton.setDisable(true);
-            } else {
-                payForOrderButton.setDisable(false);
-            }
-            if(selectedOrder.getStatus().equals(OrderStatus.CANCELLED)){
-                cancelOrderButton.setDisable(true);
-            } else {
-                cancelOrderButton.setDisable(false);
-            }
-        });
-    }
-
-    public void payForOrder(ActionEvent actionEvent) {
-        if(!JavaFxCustomUtils.showConfirmation("Are you sure you want to pay for this order?")){
-            return;
-        }
-        selectedOrder.setPaymentStatus(PaymentStatus.PAID);
-        customHib.update(selectedOrder);
-        selectedOrder = null;
-        payForOrderButton.setDisable(true);
-        cancelOrderButton.setDisable(true);
-        loadOrders();
-    }
-
-    public void cancelOrder(ActionEvent actionEvent) {
-        if(!JavaFxCustomUtils.showConfirmation("Are you sure you want to cancel this order?")){
-            return;
-        }
-        selectedOrder.setStatus(OrderStatus.CANCELLED);
-        customHib.update(selectedOrder);
-        selectedOrder = null;
-        cancelOrderButton.setDisable(true);
-        payForOrderButton.setDisable(true);
         loadOrders();
     }
 
@@ -124,6 +76,10 @@ public class MyOrdersPageController implements PageController, Initializable {
                         JavaFxCustomUtils.showError("This order is already cancelled");
                         return;
                     }
+                    if(order.getStatus().equals(COMPLETED)){
+                        JavaFxCustomUtils.showError("This order is already completed");
+                        return;
+                    }
                     if(!JavaFxCustomUtils.showConfirmation("Are you sure you want to cancel this order?")){
                         return;
                     }
@@ -148,7 +104,7 @@ public class MyOrdersPageController implements PageController, Initializable {
 
                 chatButton.setOnAction(event -> {
                     Order order = getTableView().getItems().get(getIndex());
-                    JavaFxCustomUtils.showChat(order.getUser(), currentUser);
+                    showChat(order.getUser(), currentUser, order);
                 });
             }
 
@@ -174,4 +130,34 @@ public class MyOrdersPageController implements PageController, Initializable {
         ordersTableView.getColumns().add(paymentStatusColumn);
         ordersTableView.getColumns().add(actionsColumn);
     }
+
+    public void showChat(User orderer, User employee, Order order) {
+        Dialog<Void> dialog = new Dialog<>();
+        dialog.setTitle("Chat with " + orderer.getUsername());
+
+        ListView<Message> listView = new ListView<>();
+        List<Message> messages = customHib.getMessagesOfOrder(order);
+        listView.getItems().addAll(messages);
+
+        TextField textField = new TextField();
+        textField.setOnAction(event -> {
+            String text = textField.getText();
+            if (!text.isEmpty()) {
+                Message message = sendMessage(orderer, text, order);
+                listView.getItems().add(message);
+                textField.clear();
+            }
+        });
+        VBox vbox = new VBox(listView, textField);
+        dialog.getDialogPane().setContent(vbox);
+        dialog.getDialogPane().getButtonTypes().add(ButtonType.OK);
+        dialog.showAndWait();
+    }
+
+    private Message sendMessage(User user, String text, Order order) {
+        Message message = new Message(user, null, order, text, LocalDateTime.now());
+        customHib.create(message);
+        return message;
+    }
+
 }

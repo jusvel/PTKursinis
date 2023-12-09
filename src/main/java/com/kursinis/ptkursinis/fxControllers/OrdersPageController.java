@@ -10,19 +10,19 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.PieChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.ComboBoxTableCell;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 
 import java.net.URL;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.ResourceBundle;
+import java.time.LocalDateTime;
+import java.util.*;
 
 import static com.kursinis.ptkursinis.model.OrderStatus.*;
 
@@ -183,7 +183,7 @@ public class OrdersPageController implements PageController, Initializable {
 
                 chatButton.setOnAction(event -> {
                     Order order = getTableView().getItems().get(getIndex());
-                    JavaFxCustomUtils.showChat(order.getUser(), currentUser);
+                    showChat(order.getUser(), currentUser, order);
                 });
             }
 
@@ -248,5 +248,34 @@ public class OrdersPageController implements PageController, Initializable {
         endDatePicker.setValue(null);
         loadOrders();
         updateCharts();
+    }
+
+    public void showChat(User orderer, User employee, Order order) {
+        Dialog<Void> dialog = new Dialog<>();
+        dialog.setTitle("Chat with " + orderer.getUsername());
+
+        ListView<Message> listView = new ListView<>();
+        List<Message> messages = customHib.getMessagesOfOrder(order);
+        listView.getItems().addAll(messages);
+
+        TextField textField = new TextField();
+        textField.setOnAction(event -> {
+            String text = textField.getText();
+            if (!text.isEmpty()) {
+                Message message = sendMessage(employee, text, order);
+                listView.getItems().add(message);
+                textField.clear();
+            }
+        });
+        VBox vbox = new VBox(listView, textField);
+        dialog.getDialogPane().setContent(vbox);
+        dialog.getDialogPane().getButtonTypes().add(ButtonType.OK);
+        dialog.showAndWait();
+    }
+
+    private Message sendMessage(User user, String text, Order order) {
+        Message message = new Message(user, null, order, text, LocalDateTime.now());
+        customHib.create(message);
+        return message;
     }
 }
