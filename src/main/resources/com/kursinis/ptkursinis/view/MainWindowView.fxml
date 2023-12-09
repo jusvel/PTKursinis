@@ -31,7 +31,7 @@
                   <Font size="14.0" />
                </font>
             </Button>
-            <Button fx:id="reviewsButton" mnemonicParsing="false" onAction="#loadPage" prefHeight="47.0" prefWidth="100.0" style="-fx-background-color: #593636; -fx-cursor: hand;" text="Reviews" textFill="#fdf2f2">
+            <Button fx:id="reviewsButton" mnemonicParsing="false" onAction="#loadPage" prefHeight="47.0" prefWidth="100.0" style="-fx-background-color: #593636; -fx-cursor: hand;" text="Cool Reviews" textFill="#fdf2f2">
                <font>
                   <Font size="14.0" />
                </font>

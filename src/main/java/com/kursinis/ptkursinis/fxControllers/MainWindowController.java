@@ -41,6 +41,7 @@ public class MainWindowController {
     private void loadPage(ActionEvent event) {
         String pageName = StringHelpers.camelCaseConverter(((Button) event.getSource()).getText());
         String fxmlPath = "view/"+ pageName + "Page.fxml";
+        System.out.println(fxmlPath );
         Parent root = null;
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(LaunchGUI.class.getResource(fxmlPath));;

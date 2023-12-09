@@ -203,4 +203,42 @@ public class CustomHib<T> extends GenericHib{
             if (em != null) em.close();
         }
     }
+
+    public List<CoolReview> getCoolReviewsByProductId(int productId) {
+        EntityManager em = null;
+        try{
+            em = getEntityManager();
+            CriteriaBuilder cb = em.getCriteriaBuilder();
+            CriteriaQuery<CoolReview> cbQuery = cb.createQuery(CoolReview.class);
+            Root<CoolReview> root= cbQuery.from(CoolReview.class);
+            cbQuery.select(root).where(cb.equal(root.get("product").get("id"),productId));
+
+            Query query = em.createQuery(cbQuery);
+
+            return query.getResultList();
+        } catch (NoResultException e) {
+            return null;
+        } finally {
+            if (em != null) em.close();
+        }
+    }
+
+    public void deleteCoolReview(CoolReview selectedReview) {
+        EntityManager em = null;
+        try {
+            em = getEntityManager();
+            em.getTransaction().begin();
+
+            CoolReview managedReview = em.merge(selectedReview);
+//            if(managedReview.getParentId() != null){
+                managedReview.getProduct().getCoolReviews().remove(managedReview);
+//            }
+            em.remove(managedReview);
+            em.getTransaction().commit();
+        } catch (Exception e){
+            e.printStackTrace();
+        } finally {
+            if(em != null) em.close();
+        }
+    }
 }
