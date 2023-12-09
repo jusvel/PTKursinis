@@ -27,9 +27,9 @@ public class CustomHib<T> extends GenericHib{
             CriteriaQuery<User> cbQuery = cb.createQuery(User.class);
             Root<User> root= cbQuery.from(User.class);
             cbQuery.select(root).where(cb.and(
-                    cb.equal(root.get("username"),username),
-                    cb.equal(root.get("password"),password)
-                )
+                            cb.equal(root.get("username"),username),
+                            cb.equal(root.get("password"),password)
+                    )
             );
 
             Query query = em.createQuery(cbQuery);
@@ -112,8 +112,8 @@ public class CustomHib<T> extends GenericHib{
             Root<T> root= cbQuery.from(entityClass);
             cbQuery.select(root).where(
                     ((column.toLowerCase().contains("price")) || (column.toLowerCase().contains("inches"))) ?
-                                    cb.equal(root.get(column), Double.parseDouble(value)) :
-                    ((column.toLowerCase().contains("id")) || (column.toLowerCase().contains("battery")) || (column.toLowerCase().contains("ram")) || (column.toLowerCase().contains("storage")) || (column.toLowerCase().contains("diameter")) || (column.toLowerCase().contains("weight"))) ?
+                            cb.equal(root.get(column), Double.parseDouble(value)) :
+                            ((column.toLowerCase().contains("id")) || (column.toLowerCase().contains("battery")) || (column.toLowerCase().contains("ram")) || (column.toLowerCase().contains("storage")) || (column.toLowerCase().contains("diameter")) || (column.toLowerCase().contains("weight"))) ?
                                     cb.equal(root.get(column), Integer.parseInt(value)) :
                                     cb.like(root.get(column), "%" + value + "%")
             );
@@ -204,13 +204,13 @@ public class CustomHib<T> extends GenericHib{
         }
     }
 
-    public List<CoolReview> getCoolReviewsByProductId(int productId) {
+    public List<Review> getReviewsByProductId(int productId) {
         EntityManager em = null;
         try{
             em = getEntityManager();
             CriteriaBuilder cb = em.getCriteriaBuilder();
-            CriteriaQuery<CoolReview> cbQuery = cb.createQuery(CoolReview.class);
-            Root<CoolReview> root= cbQuery.from(CoolReview.class);
+            CriteriaQuery<Review> cbQuery = cb.createQuery(Review.class);
+            Root<Review> root= cbQuery.from(Review.class);
             cbQuery.select(root).where(cb.equal(root.get("product").get("id"),productId));
 
             Query query = em.createQuery(cbQuery);
@@ -223,16 +223,15 @@ public class CustomHib<T> extends GenericHib{
         }
     }
 
-    public void deleteCoolReview(CoolReview selectedReview) {
+    public void deleteReview(Review selectedReview) {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
 
-            CoolReview managedReview = em.merge(selectedReview);
-//            if(managedReview.getParentId() != null){
-                managedReview.getProduct().getCoolReviews().remove(managedReview);
-//            }
+            Review managedReview = em.merge(selectedReview);
+            managedReview.getProduct().getReviews().remove(managedReview);
+
             em.remove(managedReview);
             em.getTransaction().commit();
         } catch (Exception e){

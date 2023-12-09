@@ -26,14 +26,9 @@ public abstract class Product implements Serializable {
     double price;
     String brand;
 
-
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
     @LazyCollection(LazyCollectionOption.FALSE)
     List<Review> reviews;
-
-    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
-    @LazyCollection(LazyCollectionOption.FALSE)
-    List<CoolReview> CoolReviews;
 
     @ManyToOne
     @JoinColumn(name = "warehouse_id")

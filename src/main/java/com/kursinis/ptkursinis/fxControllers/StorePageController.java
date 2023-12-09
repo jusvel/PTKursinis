@@ -264,10 +264,14 @@ public class StorePageController implements PageController, Initializable {
 
     private double calculateAverageRating(Product product) {
         double averageRating = 0;
+        int count = 0;
         for(Review review : product.getReviews()){
+            if(review.isReview()){
             averageRating+= review.getRating();
+            count++;
+            }
         }
-        averageRating/=product.getReviews().size();
+        averageRating/=count;
         return averageRating;
     }
 }

@@ -15,8 +15,10 @@ public class Review {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
-    private double rating;
+    private Double rating;
     private String comment;
+    private boolean isReview;
+    private Integer parentId;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
@@ -25,8 +27,19 @@ public class Review {
     @JoinColumn(name = "product_id")
     Product product;
 
+    public String getReviewText() {
+        return user.username + ": " + rating + "/5.0" + " - " + comment;
+    }
+    public String getReplyText() {
+        return comment + "\nBy: " + user.getUsername();
+    }
+
     @Override
     public String toString() {
-        return user.username + ": " + rating + "/5.0" + " - " + comment;
+        if (parentId == null) {
+            return getReviewText();
+        } else {
+            return getReplyText();
+        }
     }
 }
