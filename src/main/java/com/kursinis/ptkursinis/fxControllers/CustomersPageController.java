@@ -3,6 +3,7 @@ package com.kursinis.ptkursinis.fxControllers;
 import com.kursinis.ptkursinis.helpers.JavaFxCustomUtils;
 import com.kursinis.ptkursinis.hibernateControllers.CustomHib;
 import com.kursinis.ptkursinis.model.Customer;
+import com.kursinis.ptkursinis.model.Employee;
 import com.kursinis.ptkursinis.model.User;
 import jakarta.persistence.EntityManagerFactory;
 import javafx.beans.value.ChangeListener;
@@ -41,6 +42,9 @@ public class CustomersPageController implements Initializable, PageController{
     public TextField searchField;
     @FXML
     public ChoiceBox columnSelectionBox;
+    public Button addCustomerButton;
+    public Button deleteSelectedCustomerButton;
+    public Button updateSelectedCustomerButton;
 
     CustomHib customHib;
     private EntityManagerFactory entityManagerFactory;
@@ -54,6 +58,7 @@ public class CustomersPageController implements Initializable, PageController{
     public void initialize(URL location, ResourceBundle resources) {
         customerTable.setItems(customersData);
         addSelectionListener();
+
     }
 
     private void loadCustomers() {
@@ -89,6 +94,20 @@ public class CustomersPageController implements Initializable, PageController{
             columnSelectionBox.getItems().add(customerTableColumn.getText());
         });
         columnSelectionBox.getItems().remove("Type");
+        if(currentUser.getType().equals("E")){
+            if(!((Employee) currentUser).getIsAdmin()) {
+                usernameField.setDisable(true);
+            passwordField.setDisable(true);
+            emailField.setDisable(true);
+            firstnameField.setDisable(true);
+            lastnameField.setDisable(true);
+            numberField.setDisable(true);
+            addressField.setDisable(true);
+            addCustomerButton.setDisable(true);
+            deleteSelectedCustomerButton.setDisable(true);
+            updateSelectedCustomerButton.setDisable(true);
+            }
+        }
     }
 
     public void deselectCustomer() {

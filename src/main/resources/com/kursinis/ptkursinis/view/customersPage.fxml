@@ -110,17 +110,17 @@
                         <Font size="14.0" />
                      </font>
                   </Button>
-                  <Button mnemonicParsing="false" onAction="#addCustomer" prefWidth="200.0" style="-fx-background-color: #593636; -fx-cursor: hand;" text="Add Customer" textFill="#fdf2f2">
+                  <Button fx:id="addCustomerButton" mnemonicParsing="false" onAction="#addCustomer" prefWidth="200.0" style="-fx-background-color: #593636; -fx-cursor: hand;" text="Add Customer" textFill="#fdf2f2">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Button>
-                  <Button mnemonicParsing="false" onAction="#deleteSelectedCustomer" prefWidth="200.0" style="-fx-background-color: #593636; -fx-cursor: hand;" text="Delete selected Customer" textFill="#fdf2f2">
+                  <Button fx:id="deleteSelectedCustomerButton" mnemonicParsing="false" onAction="#deleteSelectedCustomer" prefWidth="200.0" style="-fx-background-color: #593636; -fx-cursor: hand;" text="Delete selected Customer" textFill="#fdf2f2">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Button>
-                  <Button mnemonicParsing="false" onAction="#updateSelectedCustomer" prefWidth="200.0" style="-fx-background-color: #593636; -fx-cursor: hand;" text="Update selected Customer" textFill="#fdf2f2">
+                  <Button fx:id="updateSelectedCustomerButton" mnemonicParsing="false" onAction="#updateSelectedCustomer" prefWidth="200.0" style="-fx-background-color: #593636; -fx-cursor: hand;" text="Update selected Customer" textFill="#fdf2f2">
                      <font>
                         <Font size="14.0" />
                      </font>

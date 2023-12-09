@@ -91,7 +91,7 @@
                   <Insets top="351.0" />
                </VBox.margin>
             </Label>
-            <Button alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#proceedToCheckout" style="-fx-background-color: #593636; -fx-cursor: hand;" text="Proceed to checkout" textAlignment="CENTER" textFill="#fdf2f2">
+            <Button alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#proceedToCheckout" style="-fx-background-color: #593636; -fx-cursor: hand;" text="Continue order" textAlignment="CENTER" textFill="#fdf2f2">
                <font>
                   <Font size="14.0" />
                </font>

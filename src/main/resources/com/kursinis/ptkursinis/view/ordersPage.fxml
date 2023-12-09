@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+
+<VBox fx:controller="com.kursinis.ptkursinis.fxControllers.OrdersPageController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1100.0" style="-fx-background-color: #FDF2F2;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <TableView fx:id="OrderTableView" prefHeight="400.0" prefWidth="1100.0">
+      </TableView>
+      <HBox prefHeight="400.0" prefWidth="1100.0">
+         <children>
+            <VBox alignment="CENTER" fillWidth="false" prefHeight="400.0" prefWidth="300.0" spacing="10.0">
+               <children>
+                  <Label text="Start date" />
+                  <DatePicker fx:id="startDatePicker" />
+                  <Label text="End date" />
+                  <DatePicker fx:id="endDatePicker" />
+                  <Label text="Customers username" />
+                  <TextField fx:id="usernameTextField" />
+                  <Label text="Responsible employee" />
+                  <TextField fx:id="responsibleEmloyeeTextField" />
+                  <Button mnemonicParsing="false" onAction="#search" text="Filter" />
+                  <Button mnemonicParsing="false" onAction="#resetSearch" text="Reset filter" />
+               </children>
+            </VBox>
+            <PieChart fx:id="orderStatusChart" prefHeight="400.0" prefWidth="400.0" title="Chart of order status" />
+            <BarChart fx:id="totalPriceChart" prefHeight="400.0" prefWidth="400.0" title="Chart of total prices">
+              <xAxis>
+                <CategoryAxis side="BOTTOM" />
+              </xAxis>
+              <yAxis>
+                <NumberAxis side="LEFT" />
+              </yAxis>
+            </BarChart>
+         </children>
+      </HBox>
+   </children>
+</VBox>

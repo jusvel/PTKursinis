@@ -17,6 +17,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.*;
 
 public class StorePageController implements PageController, Initializable {
@@ -119,12 +120,36 @@ public class StorePageController implements PageController, Initializable {
         if (cartProductsData.isEmpty()){
             JavaFxCustomUtils.showError("Cart is empty");
         } else {
+            String products = "";
+            double totalPrice = 0.0;
+            for (CartProduct cartProduct : cartProductsData) {
+                products += cartProduct.getProduct().getBrand() + " " + cartProduct.getProduct().getName() + " x" + cartProduct.getQuantity() + "\n";
+                totalPrice += cartProduct.getProduct().getPrice() * cartProduct.getQuantity();
+            }
+            for (CartProduct cartProduct : cartProductsData) {
+                products += cartProduct.getProduct().getBrand() + " " + cartProduct.getProduct().getName() + " x" + cartProduct.getQuantity() + "\n";
+            }
+            String deliveryAddress = JavaFxCustomUtils.showTextInputDialog("Enter delivery address", "Enter delivery address");
+            Order order = new Order(products, deliveryAddress, totalPrice, OrderStatus.PENDING, PaymentStatus.PENDING, "", LocalDate.now(), currentUser);
+            customHib.create(order);
+
             cart = customHib.getCartByUser(currentUser);
             cart.getCartProducts().clear();
             customHib.update(cart);
 
             cartProductsData.clear();
-            JavaFxCustomUtils.showSuccess("Thank you for your purchase");
+            if(JavaFxCustomUtils.showConfirmation("Order has been placed successfully\n" +
+                    "Order details:\n" +
+                    "Products:\n" +
+                    products +
+                    "Delivery address: " + deliveryAddress +
+                    "\nTotal price: $" + String.format("%.2f", totalPrice)+
+                    "\n Press OK to pay now or Cancel to pay later")){
+                order.setPaymentStatus(PaymentStatus.PAID);
+                customHib.update(order);
+                JavaFxCustomUtils.showSuccess("Order has been paid successfully");
+            }
+
         }
     }
 

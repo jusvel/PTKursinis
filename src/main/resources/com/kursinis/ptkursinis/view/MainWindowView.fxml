@@ -16,6 +16,16 @@
                   <Font size="14.0" />
                </font>
             </Button>
+            <Button fx:id="myOrdersButton" mnemonicParsing="false" onAction="#loadPage" prefHeight="47.0" prefWidth="100.0" style="-fx-background-color: #593636; -fx-cursor: hand;" text="My Orders" textFill="#fdf2f2">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="customerOrdersButton" mnemonicParsing="false" onAction="#loadPage" prefHeight="47.0" prefWidth="100.0" style="-fx-background-color: #593636; -fx-cursor: hand;" text="Orders" textFill="#fdf2f2">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
             <Button fx:id="discussionButton" mnemonicParsing="false" onAction="#loadPage" prefHeight="47.0" prefWidth="100.0" style="-fx-background-color: #593636; -fx-cursor: hand;" text="Discussion" textFill="#fdf2f2">
                <font>
                   <Font size="14.0" />

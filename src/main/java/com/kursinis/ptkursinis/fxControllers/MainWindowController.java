@@ -2,6 +2,7 @@ package com.kursinis.ptkursinis.fxControllers;
 
 import com.kursinis.ptkursinis.LaunchGUI;
 import com.kursinis.ptkursinis.helpers.JavaFxCustomUtils;
+import com.kursinis.ptkursinis.helpers.StringHelpers;
 import com.kursinis.ptkursinis.model.Employee;
 import com.kursinis.ptkursinis.model.User;
 import jakarta.persistence.EntityManagerFactory;
@@ -25,6 +26,7 @@ public class MainWindowController {
     public Button customersButton;
     public Button logOutButton;
     public Button reviewsButton;
+    public Button myOrdersButton;
     private EntityManagerFactory entityManagerFactory;
     private User currentUser;
 
@@ -37,7 +39,8 @@ public class MainWindowController {
 
     @FXML
     private void loadPage(ActionEvent event) {
-        String fxmlPath = "view/"+((Button) event.getSource()).getText().toLowerCase() + "Page.fxml";
+        String pageName = StringHelpers.camelCaseConverter(((Button) event.getSource()).getText());
+        String fxmlPath = "view/"+ pageName + "Page.fxml";
         Parent root = null;
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(LaunchGUI.class.getResource(fxmlPath));;
@@ -57,6 +60,7 @@ public class MainWindowController {
         if(currentUser.getClass().getSimpleName().equals("Customer")){
             vbox.getChildren().removeAll(vbox.getChildren());
             vbox.getChildren().add(storeButton);
+            vbox.getChildren().add(myOrdersButton);
             vbox.getChildren().add(reviewsButton);
             vbox.getChildren().add(discussionButton);
             vbox.getChildren().add(logOutButton);

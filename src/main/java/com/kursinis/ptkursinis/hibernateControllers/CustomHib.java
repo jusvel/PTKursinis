@@ -5,8 +5,13 @@ import com.kursinis.ptkursinis.model.*;
 import jakarta.persistence.*;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
+import jakarta.persistence.criteria.Predicate;
 import jakarta.persistence.criteria.Root;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 public class CustomHib<T> extends GenericHib{
@@ -142,4 +147,60 @@ public class CustomHib<T> extends GenericHib{
         }
     }
 
+    public List<Order> getOrdersByUser(User currentUser) {
+        EntityManager em = null;
+        try{
+            em = getEntityManager();
+            CriteriaBuilder cb = em.getCriteriaBuilder();
+            CriteriaQuery<Order> cbQuery = cb.createQuery(Order.class);
+            Root<Order> root= cbQuery.from(Order.class);
+            cbQuery.select(root).where(cb.equal(root.get("user"),currentUser));
+
+            Query query = em.createQuery(cbQuery);
+
+            return query.getResultList();
+        } catch (NoResultException e) {
+            return null;
+        } finally {
+            if (em != null) em.close();
+        }
+    }
+
+    public List<Order> getOrdersByFilters(String username, String responsibleEmployee, LocalDate startDate, LocalDate endDate) {
+        EntityManager em = null;
+        try{
+            em = getEntityManager();
+            CriteriaBuilder cb = em.getCriteriaBuilder();
+            CriteriaQuery<Order> cbQuery = cb.createQuery(Order.class);
+            Root<Order> root= cbQuery.from(Order.class);
+
+            List<Predicate> predicates = new ArrayList<>();
+
+            if (username != null && !username.isEmpty()) {
+                predicates.add(cb.like(root.get("user").get("username"), "%" + username + "%"));
+            }
+
+            if (responsibleEmployee != null && !responsibleEmployee.isEmpty()) {
+                predicates.add(cb.like(root.get("responsibleEmployee"), "%" + responsibleEmployee + "%"));
+            }
+
+            if (startDate != null && endDate != null) {
+                predicates.add(cb.between(root.get("dateCreated"), startDate, endDate));
+            } else if (startDate != null) {
+                predicates.add(cb.greaterThanOrEqualTo(root.get("dateCreated"), startDate));
+            } else if (endDate != null) {
+                predicates.add(cb.lessThanOrEqualTo(root.get("dateCreated"), endDate));
+            }
+
+            cbQuery.select(root).where(predicates.toArray(new Predicate[0]));
+
+            Query query = em.createQuery(cbQuery);
+
+            return query.getResultList();
+        } catch (NoResultException e) {
+            return null;
+        } finally {
+            if (em != null) em.close();
+        }
+    }
 }

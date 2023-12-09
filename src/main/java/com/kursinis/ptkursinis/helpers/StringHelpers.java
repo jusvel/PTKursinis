@@ -17,7 +17,7 @@ public class StringHelpers {
                     }
                 }
             }
-        System.out.println(camelCase);
+//        System.out.println(camelCase);
             return camelCase.toString();
         }
 }
