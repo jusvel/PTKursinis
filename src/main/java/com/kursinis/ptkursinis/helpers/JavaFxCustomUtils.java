@@ -1,5 +1,6 @@
 package com.kursinis.ptkursinis.helpers;
 
+import com.kursinis.ptkursinis.model.User;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -146,4 +147,7 @@ public class JavaFxCustomUtils {
         return dialog.showAndWait().orElse(3.0);
     }
 
+    public static void showChat(User user, User currentUser) {
+        System.out.println("Showing chat");
+    }
 }

@@ -47,6 +47,7 @@ public class OrdersPageController implements PageController, Initializable {
     TableColumn<Order, String> responsibleEmployeeColumn = new TableColumn<>("Responsible Employee");
     TableColumn<Order, Void> actionsColumn = new TableColumn<>("Actions");
 
+
     private EntityManagerFactory entityManagerFactory;
     private User currentUser;
     private CustomHib customHib;
@@ -139,7 +140,8 @@ public class OrdersPageController implements PageController, Initializable {
         actionsColumn.setCellFactory(param -> new TableCell<>() {
             private final Button completeButton = new Button("Complete");
             private final Button deleteButton = new Button("Delete");
-            private final HBox pane = new HBox(completeButton, deleteButton);
+            private final Button chatButton = new Button("Chat");
+            private final HBox pane = new HBox(completeButton, deleteButton, chatButton);
 
             {
                 completeButton.setOnAction(event -> {
@@ -178,6 +180,11 @@ public class OrdersPageController implements PageController, Initializable {
                     customHib.delete(Order.class, order.getId());
                     loadOrders();
                 });
+
+                chatButton.setOnAction(event -> {
+                    Order order = getTableView().getItems().get(getIndex());
+                    JavaFxCustomUtils.showChat(order.getUser(), currentUser);
+                });
             }
 
             @Override
@@ -193,9 +200,9 @@ public class OrdersPageController implements PageController, Initializable {
         dateCreatedColumn.setPrefWidth(80);
         statusColumn.setPrefWidth(80);
         paymentStatusColumn.setPrefWidth(80);
-        responsibleEmployeeColumn.setPrefWidth(150);
+        responsibleEmployeeColumn.setPrefWidth(100);
         customerColumn.setPrefWidth(90);
-        actionsColumn.setPrefWidth(160);
+        actionsColumn.setPrefWidth(210);
         OrderTableView.setEditable(true);
         OrderTableView.getColumns().addAll(customerColumn, productsColumn, totalPriceColumn, deliveryAddressColumn, statusColumn, paymentStatusColumn, dateCreatedColumn, responsibleEmployeeColumn, actionsColumn);
         OrderTableView.setRowFactory(tv -> new TableRow<Order>() {

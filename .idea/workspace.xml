@@ -9,18 +9,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a8b7cbe6-0520-4e61-818a-5d5dd426460d" name="Changes" comment="Implemented review and reply functionality in CoolReviewsController. Users can now leave reviews for products and reply to existing reviews. Also fixed issue with deleting top-level comments and their child comments.&#10;&#10;This is before implementing them to replace the old reviews">
+    <list default="true" id="a8b7cbe6-0520-4e61-818a-5d5dd426460d" name="Changes" comment="replaced the old reviews with the new reviews">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kursinis/ptkursinis/fxControllers/CoolReviewsController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kursinis/ptkursinis/fxControllers/ReviewsPageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kursinis/ptkursinis/fxControllers/ReviewsPageController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kursinis/ptkursinis/fxControllers/StorePageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kursinis/ptkursinis/fxControllers/StorePageController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kursinis/ptkursinis/hibernateControllers/CustomHib.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kursinis/ptkursinis/hibernateControllers/CustomHib.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kursinis/ptkursinis/model/CoolReview.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kursinis/ptkursinis/model/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kursinis/ptkursinis/model/Product.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kursinis/ptkursinis/model/Review.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kursinis/ptkursinis/model/Review.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/kursinis/ptkursinis/view/MainWindowView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/kursinis/ptkursinis/view/MainWindowView.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/kursinis/ptkursinis/view/reviewsPage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/kursinis/ptkursinis/view/reviewsPage.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kursinis/ptkursinis/fxControllers/MyOrdersPageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kursinis/ptkursinis/fxControllers/MyOrdersPageController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kursinis/ptkursinis/fxControllers/OrdersPageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kursinis/ptkursinis/fxControllers/OrdersPageController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kursinis/ptkursinis/helpers/JavaFxCustomUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kursinis/ptkursinis/helpers/JavaFxCustomUtils.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -378,7 +371,7 @@
       <workItem from="1701884290984" duration="8843000" />
       <workItem from="1701962572076" duration="5935000" />
       <workItem from="1702118379436" duration="93000" />
-      <workItem from="1702118557300" duration="17167000" />
+      <workItem from="1702118557300" duration="19324000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <option name="closed" value="true" />
@@ -460,7 +453,15 @@
       <option name="project" value="LOCAL" />
       <updated>1702135580739</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="replaced the old reviews with the new reviews">
+      <option name="closed" value="true" />
+      <created>1702137505023</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1702137505023</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -486,7 +487,8 @@
     <MESSAGE value="add review section and added rating column to the store page" />
     <MESSAGE value="added my orders and orders page" />
     <MESSAGE value="Implemented review and reply functionality in CoolReviewsController. Users can now leave reviews for products and reply to existing reviews. Also fixed issue with deleting top-level comments and their child comments.&#10;&#10;This is before implementing them to replace the old reviews" />
-    <option name="LAST_COMMIT_MESSAGE" value="Implemented review and reply functionality in CoolReviewsController. Users can now leave reviews for products and reply to existing reviews. Also fixed issue with deleting top-level comments and their child comments.&#10;&#10;This is before implementing them to replace the old reviews" />
+    <MESSAGE value="replaced the old reviews with the new reviews" />
+    <option name="LAST_COMMIT_MESSAGE" value="replaced the old reviews with the new reviews" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
