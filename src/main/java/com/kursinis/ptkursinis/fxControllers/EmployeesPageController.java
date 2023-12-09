@@ -14,6 +14,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
+import org.mindrot.jbcrypt.BCrypt;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -97,7 +98,8 @@ public class EmployeesPageController implements PageController, Initializable {
             JavaFxCustomUtils.showError("Email is already taken");
             return;
         }
-        Employee employee = new Employee(usernameField.getText(), passwordField.getText(), emailField.getText(), firstnameField.getText(), lastnameField.getText(), numberField.getText(), Integer.parseInt(employeeIdField.getText()), employmentDateDatePicker.getValue(), isAdminCheckBox.isSelected());
+        String password = BCrypt.hashpw(passwordField.getText(), BCrypt.gensalt());
+        Employee employee = new Employee(usernameField.getText(), password, emailField.getText(), firstnameField.getText(), lastnameField.getText(), numberField.getText(), Integer.parseInt(employeeIdField.getText()), employmentDateDatePicker.getValue(), isAdminCheckBox.isSelected());
         customHib.create(employee);
         employeeData.add(employee);
         selectedEmployee = employee;
@@ -128,8 +130,9 @@ public class EmployeesPageController implements PageController, Initializable {
             JavaFxCustomUtils.showError("Please fill in all fields");
             return;
         }
+        String password = BCrypt.hashpw(passwordField.getText(), BCrypt.gensalt());
         selectedEmployee.setUsername(usernameField.getText());
-        selectedEmployee.setPassword(passwordField.getText());
+        selectedEmployee.setPassword(password);
         selectedEmployee.setEmail(emailField.getText());
         selectedEmployee.setFirstName(firstnameField.getText());
         selectedEmployee.setLastName(lastnameField.getText());
@@ -178,7 +181,6 @@ public class EmployeesPageController implements PageController, Initializable {
                     employeeIdField.setText(String.valueOf(selectedEmployee.getEmployeeId()));
                     isAdminCheckBox.setSelected(isAdmin);
                     employmentDateDatePicker.setValue(selectedEmployee.getEmploymentDate());
-                    System.out.println(selectedEmployee.toString());
                 }
             }
         });

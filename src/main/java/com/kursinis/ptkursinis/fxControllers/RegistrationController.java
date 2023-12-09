@@ -1,11 +1,11 @@
 package com.kursinis.ptkursinis.fxControllers;
 
+import org.mindrot.jbcrypt.BCrypt;
 import com.kursinis.ptkursinis.LaunchGUI;
 import com.kursinis.ptkursinis.helpers.JavaFxCustomUtils;
 import com.kursinis.ptkursinis.hibernateControllers.CustomHib;
 import com.kursinis.ptkursinis.model.Customer;
 import jakarta.persistence.EntityManagerFactory;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -58,7 +58,9 @@ public class RegistrationController {
             JavaFxCustomUtils.showError("Email is taken");
         } else {
             try{
-                customHib.create(new Customer(usernameField.getText(),passwordField.getText(),emailField.getText(),
+                String hashedPassword = BCrypt.hashpw(passwordField.getText(), BCrypt.gensalt());
+
+                customHib.create(new Customer(usernameField.getText(),hashedPassword,emailField.getText(),
                         firstNameField.getText(),lastNameField.getText(), numberField.getText(),addressField.getText()));
             } catch (Exception e){
                 e.printStackTrace();

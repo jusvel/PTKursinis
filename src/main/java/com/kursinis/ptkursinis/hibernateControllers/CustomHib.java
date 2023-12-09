@@ -9,6 +9,7 @@ import jakarta.persistence.criteria.Predicate;
 import jakarta.persistence.criteria.Root;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.mindrot.jbcrypt.BCrypt;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -26,15 +27,15 @@ public class CustomHib<T> extends GenericHib{
             CriteriaBuilder cb = em.getCriteriaBuilder();
             CriteriaQuery<User> cbQuery = cb.createQuery(User.class);
             Root<User> root= cbQuery.from(User.class);
-            cbQuery.select(root).where(cb.and(
-                            cb.equal(root.get("username"),username),
-                            cb.equal(root.get("password"),password)
-                    )
-            );
+            cbQuery.select(root).where(cb.equal(root.get("username"),username));
 
             Query query = em.createQuery(cbQuery);
+            User user = (User) query.getSingleResult();
 
-            return (User) query.getSingleResult();
+            if(user!=null && !BCrypt.checkpw(password,user.getPassword())){
+                return null;
+            }
+            return user;
         } catch (NoResultException e) {
             return null;
         } finally {

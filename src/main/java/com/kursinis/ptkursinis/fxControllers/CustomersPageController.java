@@ -15,6 +15,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
+import org.mindrot.jbcrypt.BCrypt;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -133,7 +134,8 @@ public class CustomersPageController implements Initializable, PageController{
             JavaFxCustomUtils.showError("Email is already taken");
             return;
         }
-        Customer customer = new Customer(usernameField.getText(), passwordField.getText(), emailField.getText(), firstnameField.getText(), lastnameField.getText(), numberField.getText(), addressField.getText());
+        String password = BCrypt.hashpw(passwordField.getText(), BCrypt.gensalt());
+        Customer customer = new Customer(usernameField.getText(), password, emailField.getText(), firstnameField.getText(), lastnameField.getText(), numberField.getText(), addressField.getText());
         customHib.create(customer);
         customersData.add(customer);
         selectedCustomer = customer;
@@ -165,8 +167,9 @@ public class CustomersPageController implements Initializable, PageController{
             JavaFxCustomUtils.showError("Please fill in all fields");
             return;
         }
+        String password = BCrypt.hashpw(passwordField.getText(), BCrypt.gensalt());
         selectedCustomer.setUsername(usernameField.getText());
-        selectedCustomer.setPassword(passwordField.getText());
+        selectedCustomer.setPassword(password);
         selectedCustomer.setEmail(emailField.getText());
         selectedCustomer.setFirstName(firstnameField.getText());
         selectedCustomer.setLastName(lastnameField.getText());

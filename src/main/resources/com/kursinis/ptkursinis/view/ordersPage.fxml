@@ -1,20 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.chart.BarChart?>
 <?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
 <?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.chart.PieChart?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-
-<VBox fx:controller="com.kursinis.ptkursinis.fxControllers.OrdersPageController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1100.0" style="-fx-background-color: #FDF2F2;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1100.0" style="-fx-background-color: #FDF2F2;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.kursinis.ptkursinis.fxControllers.OrdersPageController">
    <children>
       <TableView fx:id="OrderTableView" prefHeight="400.0" prefWidth="1100.0">
       </TableView>
@@ -35,14 +33,14 @@
                </children>
             </VBox>
             <PieChart fx:id="orderStatusChart" prefHeight="400.0" prefWidth="400.0" title="Chart of order status" />
-            <BarChart fx:id="totalPriceChart" prefHeight="400.0" prefWidth="400.0" title="Chart of total prices">
+            <LineChart fx:id="chartOfRevenue" title="Chart of revenue">
               <xAxis>
                 <CategoryAxis side="BOTTOM" />
               </xAxis>
               <yAxis>
                 <NumberAxis side="LEFT" />
               </yAxis>
-            </BarChart>
+            </LineChart>
          </children>
       </HBox>
    </children>

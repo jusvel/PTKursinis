@@ -5,6 +5,7 @@ module com.kursinis.ptkursinis {
     requires java.sql;
     requires org.hibernate.orm.core;
     requires jakarta.persistence;
+    requires jbcrypt;
 
     opens com.kursinis.ptkursinis to javafx.fxml;
     exports com.kursinis.ptkursinis;

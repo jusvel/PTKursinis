@@ -11,12 +11,13 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
-import javafx.scene.chart.BarChart;
+import javafx.scene.chart.LineChart;
 import javafx.scene.chart.PieChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.ComboBoxTableCell;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 
 import java.net.URL;
@@ -35,7 +36,7 @@ public class OrdersPageController implements PageController, Initializable {
     public TableView<Order> OrderTableView;
     private final ObservableList<Order> ordersData = javafx.collections.FXCollections.observableArrayList();
     public PieChart orderStatusChart;
-    public BarChart totalPriceChart;
+    public LineChart chartOfRevenue;
 
     TableColumn<Order, String> productsColumn = new TableColumn<>("Products");
     TableColumn<Order, String> deliveryAddressColumn = new TableColumn<>("Delivery Address");
@@ -46,7 +47,6 @@ public class OrdersPageController implements PageController, Initializable {
     TableColumn<Order, String> customerColumn = new TableColumn<>("Customer");
     TableColumn<Order, String> responsibleEmployeeColumn = new TableColumn<>("Responsible Employee");
     TableColumn<Order, Void> actionsColumn = new TableColumn<>("Actions");
-
 
     private EntityManagerFactory entityManagerFactory;
     private User currentUser;
@@ -82,13 +82,27 @@ public class OrdersPageController implements PageController, Initializable {
         ordersData.addAll(customHib.getAllRecords(Order.class));
     }
 
-    private void updateBarChart() {
-        double totalSum = 0.0;
-        for (Order order : ordersData) {
-            totalSum += order.getTotalPrice();
+    private void updateChartOfRevenue() {
+        XYChart.Series<String, Double> series = new XYChart.Series<>();
+        series.setName("Revenue");
+
+        Map<LocalDate, Double> revenueMap = new TreeMap<>();
+        for(Order order : ordersData){
+            revenueMap.put(order.getDateCreated(), revenueMap.getOrDefault(order.getDateCreated(), 0.0) + order.getTotalPrice());
         }
-        XYChart.Data<String, Number> bar = new XYChart.Data<>("Total Price", totalSum);
-        totalPriceChart.getData().add(new XYChart.Series<>(FXCollections.observableArrayList(bar)));
+
+        for (Map.Entry<LocalDate, Double> entry : revenueMap.entrySet()){
+            XYChart.Data<String, Double> data = new XYChart.Data<>(entry.getKey().toString(), entry.getValue());
+            series.getData().add(data);
+
+            data.setNode(new StackPane());
+            Label label = new Label(String.format("%.2f", entry.getValue()));
+            label.setStyle("-fx-font-size: 10px;");
+            StackPane.setAlignment(label, Pos.TOP_CENTER);
+            ((StackPane) data.getNode()).getChildren().add(label);
+        }
+
+        chartOfRevenue.getData().add(series);
     }
 
     private void updatePieChart() {
@@ -122,6 +136,15 @@ public class OrdersPageController implements PageController, Initializable {
         paymentStatusColumn.setCellValueFactory(cellData -> new javafx.beans.property.SimpleStringProperty(cellData.getValue().getPaymentStatus().toString()));
         dateCreatedColumn.setCellValueFactory(cellData -> new javafx.beans.property.SimpleStringProperty(cellData.getValue().getDateCreated().toString()));
         totalPriceColumn.setCellValueFactory(cellData -> new javafx.beans.property.SimpleStringProperty(String.valueOf(cellData.getValue().getTotalPrice())));
+        customerColumn.setCellValueFactory(cellData -> new javafx.beans.property.SimpleStringProperty(cellData.getValue().getUser().getUsername()));
+
+        addResponsibleEmployeeColumn();
+        addActionColumn();
+        setColumnWidths();
+        addColumnsAndAlert();
+    }
+
+    private void addResponsibleEmployeeColumn() {
         responsibleEmployeeColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getResponsibleEmployee()));
         responsibleEmployeeColumn.setCellFactory(ComboBoxTableCell.forTableColumn(FXCollections.observableArrayList(employeeUsernames)));
         responsibleEmployeeColumn.setOnEditCommit((TableColumn.CellEditEvent<Order, String> event) -> {
@@ -135,14 +158,14 @@ public class OrdersPageController implements PageController, Initializable {
             loadOrders();
         });
         responsibleEmployeeColumn.setEditable(true);
-        customerColumn.setCellValueFactory(cellData -> new javafx.beans.property.SimpleStringProperty(cellData.getValue().getUser().getUsername()));
+    }
 
+    private void addActionColumn() {
         actionsColumn.setCellFactory(param -> new TableCell<>() {
             private final Button completeButton = new Button("Complete");
             private final Button deleteButton = new Button("Delete");
             private final Button chatButton = new Button("Chat");
             private final HBox pane = new HBox(completeButton, deleteButton, chatButton);
-
             {
                 completeButton.setOnAction(event -> {
                     Order order = getTableView().getItems().get(getIndex());
@@ -193,16 +216,9 @@ public class OrdersPageController implements PageController, Initializable {
                 setGraphic(empty ? null : pane);
             }
         });
+    }
 
-        productsColumn.setPrefWidth(200);
-        deliveryAddressColumn.setPrefWidth(150);
-        totalPriceColumn.setPrefWidth(80);
-        dateCreatedColumn.setPrefWidth(80);
-        statusColumn.setPrefWidth(80);
-        paymentStatusColumn.setPrefWidth(80);
-        responsibleEmployeeColumn.setPrefWidth(100);
-        customerColumn.setPrefWidth(90);
-        actionsColumn.setPrefWidth(210);
+    private void addColumnsAndAlert() {
         OrderTableView.setEditable(true);
         OrderTableView.getColumns().addAll(customerColumn, productsColumn, totalPriceColumn, deliveryAddressColumn, statusColumn, paymentStatusColumn, dateCreatedColumn, responsibleEmployeeColumn, actionsColumn);
         OrderTableView.setRowFactory(tv -> new TableRow<Order>() {
@@ -218,6 +234,18 @@ public class OrdersPageController implements PageController, Initializable {
                 }
             }
         });
+    }
+
+    private void setColumnWidths() {
+        productsColumn.setPrefWidth(200);
+        deliveryAddressColumn.setPrefWidth(150);
+        totalPriceColumn.setPrefWidth(80);
+        dateCreatedColumn.setPrefWidth(80);
+        statusColumn.setPrefWidth(80);
+        paymentStatusColumn.setPrefWidth(80);
+        responsibleEmployeeColumn.setPrefWidth(100);
+        customerColumn.setPrefWidth(90);
+        actionsColumn.setPrefWidth(210);
     }
 
     public void search(ActionEvent actionEvent) {
@@ -236,9 +264,9 @@ public class OrdersPageController implements PageController, Initializable {
 
     private void updateCharts() {
         orderStatusChart.getData().clear();
-        totalPriceChart.getData().clear();
+        chartOfRevenue.getData().clear();
         updatePieChart();
-        updateBarChart();
+        updateChartOfRevenue();
     }
 
     public void resetSearch(ActionEvent actionEvent) {
