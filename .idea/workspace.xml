@@ -9,21 +9,36 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a8b7cbe6-0520-4e61-818a-5d5dd426460d" name="Changes" comment="added chat functionality for messaging on orders">
+    <list default="true" id="a8b7cbe6-0520-4e61-818a-5d5dd426460d" name="Changes" comment="changed chart from bar to line and added password hashing">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kursinis/ptkursinis/helpers/HashHelper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/60cfa3f4-c7ac-4e00-b6ea-97230b746ec9.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/60cfa3f4-c7ac-4e00-b6ea-97230b746ec9.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/kursinis/ptkursinis/fxControllers/CustomersPageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kursinis/ptkursinis/fxControllers/CustomersPageController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kursinis/ptkursinis/fxControllers/DiscussionPageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kursinis/ptkursinis/fxControllers/DiscussionPageController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/kursinis/ptkursinis/fxControllers/EmployeesPageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kursinis/ptkursinis/fxControllers/EmployeesPageController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kursinis/ptkursinis/fxControllers/ItemPageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kursinis/ptkursinis/fxControllers/ItemPageController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kursinis/ptkursinis/fxControllers/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kursinis/ptkursinis/fxControllers/LoginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kursinis/ptkursinis/fxControllers/MainWindowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kursinis/ptkursinis/fxControllers/MainWindowController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kursinis/ptkursinis/fxControllers/MyOrdersPageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kursinis/ptkursinis/fxControllers/MyOrdersPageController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/kursinis/ptkursinis/fxControllers/OrdersPageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kursinis/ptkursinis/fxControllers/OrdersPageController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/kursinis/ptkursinis/fxControllers/RegistrationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kursinis/ptkursinis/fxControllers/RegistrationController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kursinis/ptkursinis/fxControllers/ReviewsPageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kursinis/ptkursinis/fxControllers/ReviewsPageController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kursinis/ptkursinis/fxControllers/StorePageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kursinis/ptkursinis/fxControllers/StorePageController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kursinis/ptkursinis/fxControllers/WarehousePageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kursinis/ptkursinis/fxControllers/WarehousePageController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kursinis/ptkursinis/helpers/JavaFxCustomUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kursinis/ptkursinis/helpers/JavaFxCustomUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kursinis/ptkursinis/helpers/StringHelpers.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kursinis/ptkursinis/helpers/StringHelper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/kursinis/ptkursinis/hibernateControllers/CustomHib.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kursinis/ptkursinis/hibernateControllers/CustomHib.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/kursinis/ptkursinis/view/ordersPage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/kursinis/ptkursinis/view/ordersPage.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kursinis/ptkursinis/hibernateControllers/GenericHib.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kursinis/ptkursinis/hibernateControllers/GenericHib.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/kursinis/ptkursinis/view/discussionPage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/kursinis/ptkursinis/view/discussionPage.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/kursinis/ptkursinis/view/warehousesPage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/kursinis/ptkursinis/view/warehousesPage.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExportToHTMLSettings">
+    <option name="OUTPUT_DIRECTORY" value="$PROJECT_DIR$/../PTKursinis\exportToHTML" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -79,11 +94,11 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Project",
+    "project.structure.last.edited": "Problems",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.3827047",
     "run.code.analysis.last.selected.profile": "pProject Default",
-    "settings.editor.selected.configurable": "reference.settingsdialog.IDE.editor.colors.Color Scheme Font",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
     "vue.rearranger.settings.migration": "true"
   },
   "keyToStringList": {
@@ -376,7 +391,8 @@
       <workItem from="1701884290984" duration="8843000" />
       <workItem from="1701962572076" duration="5935000" />
       <workItem from="1702118379436" duration="93000" />
-      <workItem from="1702118557300" duration="30451000" />
+      <workItem from="1702118557300" duration="30479000" />
+      <workItem from="1702314544711" duration="6946000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <option name="closed" value="true" />
@@ -482,7 +498,15 @@
       <option name="project" value="LOCAL" />
       <updated>1702146735650</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="changed chart from bar to line and added password hashing">
+      <option name="closed" value="true" />
+      <created>1702151329269</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1702151329269</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -511,7 +535,8 @@
     <MESSAGE value="replaced the old reviews with the new reviews" />
     <MESSAGE value="ui set up for chat, before back end implementation" />
     <MESSAGE value="added chat functionality for messaging on orders" />
-    <option name="LAST_COMMIT_MESSAGE" value="added chat functionality for messaging on orders" />
+    <MESSAGE value="changed chart from bar to line and added password hashing" />
+    <option name="LAST_COMMIT_MESSAGE" value="changed chart from bar to line and added password hashing" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

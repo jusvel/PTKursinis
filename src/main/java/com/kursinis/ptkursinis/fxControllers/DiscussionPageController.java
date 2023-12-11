@@ -5,13 +5,11 @@ import com.kursinis.ptkursinis.hibernateControllers.CustomHib;
 import com.kursinis.ptkursinis.model.Post;
 import com.kursinis.ptkursinis.model.PostComment;
 import com.kursinis.ptkursinis.model.User;
-import com.kursinis.ptkursinis.model.Warehouse;
 import jakarta.persistence.EntityManagerFactory;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 
@@ -22,40 +20,21 @@ public class DiscussionPageController implements PageController, Initializable {
     public ListView postList;
     public Label authorLabel;
     public ListView commentsList;
-    public TextArea commentTextArea;
     public TextArea postBodyTextArea;
     public TextField postTitleTextField;
     public Button savePostButton;
     public Button deletePostButton;
     public Button updateCommentButton;
     public Button deleteCommentButton;
-    private EntityManagerFactory entityManagerFactory;
-    private User currentUser;
-    private CustomHib customHib;
 
     private final ObservableList<Post> postData = FXCollections.observableArrayList();
     private final ObservableList<PostComment> postCommentData = FXCollections.observableArrayList();
     private Post selectedPost;
     private PostComment selectedComment;
 
-
-    @Override
-    public void setData(EntityManagerFactory entityManagerFactory, User currentUser) {
-        this.entityManagerFactory = entityManagerFactory;
-        this.currentUser = currentUser;
-        customHib = new CustomHib(entityManagerFactory);
-        loadPosts();
-    }
-
-    private void loadPosts(){
-        postData.clear();
-        postData.addAll(customHib.getAllRecords(Post.class));
-    }
-    private void loadComments(int id){
-        postCommentData.clear();
-        Post post = (Post) customHib.getEntityById(Post.class,id);
-        postCommentData.addAll(post.getComments());
-    }
+    private EntityManagerFactory entityManagerFactory;
+    private User currentUser;
+    private CustomHib customHib;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -63,6 +42,25 @@ public class DiscussionPageController implements PageController, Initializable {
         commentsList.setItems(postCommentData);
         addPostListSelectionListener();
         addPostCommentListSelectionListener();
+    }
+
+    @Override
+    public void setData(EntityManagerFactory entityManagerFactory, User currentUser) {
+        this.entityManagerFactory = entityManagerFactory;
+        this.currentUser = currentUser;
+        customHib = new CustomHib(this.entityManagerFactory);
+        loadPosts();
+    }
+
+    private void loadPosts(){
+        postData.clear();
+        postData.addAll(customHib.getAllRecords(Post.class));
+    }
+
+    private void loadComments(int id){
+        postCommentData.clear();
+        Post post = (Post) customHib.getEntityById(Post.class,id);
+        postCommentData.addAll(post.getComments());
     }
 
     private void addPostCommentListSelectionListener() {
@@ -140,7 +138,7 @@ public class DiscussionPageController implements PageController, Initializable {
 
     public void deletePost() {
         if(selectedPost.getUser().getId() == currentUser.getId()) {
-            customHib.delete(Post.class,selectedPost.getId());
+            customHib.deletePost(selectedPost);
             postData.remove(selectedPost);
         }
     }
@@ -157,13 +155,13 @@ public class DiscussionPageController implements PageController, Initializable {
         }
     }
 
-    public void deleteComent() {
+    public void deleteComment() {
         if(selectedComment == null){
             JavaFxCustomUtils.showError("Please select a comment");
             return;
         }
         if(currentUser.getId() == selectedComment.getUser().getId()){
-            customHib.delete(PostComment.class,selectedComment.getId());
+            customHib.deleteComment(selectedComment);
             postCommentData.remove(selectedComment);
         }
     }

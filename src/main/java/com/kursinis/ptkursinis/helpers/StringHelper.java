@@ -1,6 +1,6 @@
 package com.kursinis.ptkursinis.helpers;
 
-public class StringHelpers {
+public class StringHelper {
     public static String camelCaseConverter(String input) {
             if (input == null || input.isEmpty()) {
                 return input;
@@ -17,7 +17,6 @@ public class StringHelpers {
                     }
                 }
             }
-//        System.out.println(camelCase);
             return camelCase.toString();
         }
 }

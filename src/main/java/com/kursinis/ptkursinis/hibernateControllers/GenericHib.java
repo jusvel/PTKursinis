@@ -1,13 +1,11 @@
 package com.kursinis.ptkursinis.hibernateControllers;
 
-import com.kursinis.ptkursinis.helpers.StringHelpers;
-import com.kursinis.ptkursinis.model.User;
+import com.kursinis.ptkursinis.helpers.StringHelper;
 import jakarta.persistence.*;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Root;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -71,8 +69,9 @@ public class GenericHib<T> {
         try {
 
             em = getEntityManager();
-            em.getTransaction().begin();
             var object = em.find(entityClass, id);
+            System.out.println(object.toString());
+            em.getTransaction().begin();
             em.remove(object);
             em.getTransaction().commit();
         } catch (Exception e) {
@@ -96,7 +95,7 @@ public class GenericHib<T> {
     }
     public List<T> getEntitiesSearch(Class<T> entityClass, String column, String value) {
         EntityManager em = null;
-        column = StringHelpers.camelCaseConverter(column);
+        column = StringHelper.camelCaseConverter(column);
 
         try{
             em = getEntityManager();

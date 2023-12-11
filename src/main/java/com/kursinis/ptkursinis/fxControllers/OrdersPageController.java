@@ -58,6 +58,7 @@ public class OrdersPageController implements PageController, Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         OrderTableView.setItems(ordersData);
     }
+
     @Override
     public void setData(EntityManagerFactory entityManagerFactory, User currentUser) {
         this.entityManagerFactory = entityManagerFactory;

@@ -2,10 +2,7 @@ package com.kursinis.ptkursinis.fxControllers;
 
 import com.kursinis.ptkursinis.helpers.JavaFxCustomUtils;
 import com.kursinis.ptkursinis.hibernateControllers.CustomHib;
-import com.kursinis.ptkursinis.model.Customer;
-import com.kursinis.ptkursinis.model.Product;
-import com.kursinis.ptkursinis.model.User;
-import com.kursinis.ptkursinis.model.Warehouse;
+import com.kursinis.ptkursinis.model.*;
 import jakarta.persistence.EntityManagerFactory;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -15,6 +12,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -31,6 +29,9 @@ public class WarehousePageController implements PageController, Initializable {
     public ChoiceBox selectionChoiceBox;
     public TextField searchTextField;
     public VBox fieldVBox;
+    public Button addWarehouseButton;
+    public Button deleteWarehouseButton;
+    public Button updateWarehouseButton;
     private ObservableList<Warehouse> warehouseData = FXCollections.observableArrayList();
     Warehouse selectedWarehouse;
 
@@ -43,6 +44,23 @@ public class WarehousePageController implements PageController, Initializable {
         warehousesTableView.setItems(warehouseData);
         addTableSelectionListener();
     }
+
+    @Override
+    public void setData(EntityManagerFactory entityManagerFactory, User currentUser) {
+        this.entityManagerFactory = entityManagerFactory;
+        this.currentUser = currentUser;
+        customHib = new CustomHib(this.entityManagerFactory);
+        loadWarehouses();
+        setUpSelectionBox();
+        disableFieldsForNonAdmins();
+    }
+
+    private void setUpSelectionBox() {
+        warehousesTableView.getColumns().forEach(warehousesTableViewColumn -> {
+            selectionChoiceBox.getItems().add(warehousesTableViewColumn.getText());
+        });
+    }
+
     private void addTableSelectionListener() {
         warehousesTableView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
             @Override
@@ -56,17 +74,15 @@ public class WarehousePageController implements PageController, Initializable {
         });
     }
 
-    @Override
-    public void setData(EntityManagerFactory entityManagerFactory, User currentUser) {
-        this.entityManagerFactory = entityManagerFactory;
-        this.currentUser = currentUser;
-        customHib = new CustomHib(entityManagerFactory);
-        loadWarehouses();
-        warehousesTableView.getColumns().forEach(warehousesTableViewColumn -> {
-            selectionChoiceBox.getItems().add(warehousesTableViewColumn.getText());
-        });
+    private void disableFieldsForNonAdmins() {
+        if(!((Employee) currentUser).getIsAdmin()) {
+            nameTextField.setDisable(true);
+            addressTextField.setDisable(true);
+            addWarehouseButton.setDisable(true);
+            deleteWarehouseButton.setDisable(true);
+            updateWarehouseButton.setDisable(true);
+        }
     }
-
 
     private void loadWarehouses() {
         warehouseData.clear();
@@ -81,7 +97,7 @@ public class WarehousePageController implements PageController, Initializable {
     }
 
     public void addWarehouse() {
-        if(JavaFxCustomUtils.isAnyTextFieldEmpty(fieldVBox)) {
+        if(JavaFxCustomUtils.hasEmptyTextField(fieldVBox)) {
             JavaFxCustomUtils.showError("Please fill all fields");
             return;
         }
@@ -92,7 +108,7 @@ public class WarehousePageController implements PageController, Initializable {
     }
 
     public void deleteWarehouse() {
-        //TODO send products of a warehouse to another warehouse?
+        //TODO send products of a warehouse to another warehouse before deleting it (maybe)
         if(selectedWarehouse == null) {
             JavaFxCustomUtils.showError("Please select a warehouse");
             return;

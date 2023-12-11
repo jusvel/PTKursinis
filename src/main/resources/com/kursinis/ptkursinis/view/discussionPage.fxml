@@ -109,7 +109,7 @@
                   <Font size="14.0" />
                </font>
             </Button>
-            <Button fx:id="deleteCommentButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#deleteComent" style="-fx-background-color: #794848; -fx-cursor: hand;" text="Delete comment" textFill="#fdf2f2">
+            <Button fx:id="deleteCommentButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#deleteComment" style="-fx-background-color: #794848; -fx-cursor: hand;" text="Delete comment" textFill="#fdf2f2">
                <VBox.margin>
                   <Insets top="20.0" />
                </VBox.margin>

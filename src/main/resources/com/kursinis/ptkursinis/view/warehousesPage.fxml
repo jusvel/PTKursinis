@@ -61,17 +61,17 @@
                         <Font size="14.0" />
                      </font>
                   </Button>
-                  <Button mnemonicParsing="false" onAction="#addWarehouse" prefWidth="320.0" style="-fx-cursor: hand; -fx-background-color: #593636;" text="Add Warehouse" textFill="#fdf2f2">
+                  <Button fx:id="addWarehouseButton" mnemonicParsing="false" onAction="#addWarehouse" prefWidth="320.0" style="-fx-cursor: hand; -fx-background-color: #593636;" text="Add Warehouse" textFill="#fdf2f2">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Button>
-                  <Button mnemonicParsing="false" onAction="#deleteWarehouse" prefWidth="320.0" style="-fx-cursor: hand; -fx-background-color: #593636;" text="Delete Warehouse" textFill="#fdf2f2">
+                  <Button fx:id="deleteWarehouseButton" mnemonicParsing="false" onAction="#deleteWarehouse" prefWidth="320.0" style="-fx-cursor: hand; -fx-background-color: #593636;" text="Delete Warehouse" textFill="#fdf2f2">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Button>
-                  <Button mnemonicParsing="false" onAction="#updateWarehouse" prefWidth="320.0" style="-fx-cursor: hand; -fx-background-color: #593636;" text="Update Warehouse" textFill="#fdf2f2">
+                  <Button fx:id="updateWarehouseButton" mnemonicParsing="false" onAction="#updateWarehouse" prefWidth="320.0" style="-fx-cursor: hand; -fx-background-color: #593636;" text="Update Warehouse" textFill="#fdf2f2">
                      <font>
                         <Font size="14.0" />
                      </font>

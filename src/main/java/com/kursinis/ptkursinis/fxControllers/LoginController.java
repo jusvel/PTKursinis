@@ -6,13 +6,11 @@ import com.kursinis.ptkursinis.hibernateControllers.CustomHib;
 import com.kursinis.ptkursinis.model.*;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -23,21 +21,28 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class LoginController implements Initializable{
+
+    public TextField usernameField;
+    public PasswordField passwordField;
+    public Button loginButton;
+
     private EntityManagerFactory entityManagerFactory;
     private CustomHib customHib;
 
-    @FXML
-    public TextField usernameField;
-    @FXML
-    public PasswordField passwordField;
-    @FXML
-    public Button loginButton;
-    @FXML
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        entityManagerFactory = Persistence.createEntityManagerFactory("kursinis-unit");
+        customHib = new CustomHib(entityManagerFactory);
+    }
+
     public void verifyLogin() throws IOException {
         User u = customHib.getUserByCredentials(usernameField.getText(), passwordField.getText());
 
-        if(u!=null) loadStore(u);
-        else JavaFxCustomUtils.showError("Wrong credentials");
+        if(u!=null) {
+            loadStore(u);
+        } else {
+            JavaFxCustomUtils.showError("Wrong credentials");
+        }
     }
 
     private void loadStore(User u) throws IOException {
@@ -73,9 +78,4 @@ public class LoginController implements Initializable{
         stage.centerOnScreen();
     }
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        entityManagerFactory = Persistence.createEntityManagerFactory("kursinis-unit");
-        customHib = new CustomHib(entityManagerFactory);
-    }
 }

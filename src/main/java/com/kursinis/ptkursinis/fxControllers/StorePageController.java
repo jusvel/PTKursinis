@@ -30,9 +30,6 @@ public class StorePageController implements PageController, Initializable {
     private final ObservableList<Product> productsData = FXCollections.observableArrayList();
     private final ObservableList<CartProduct> cartProductsData = FXCollections.observableArrayList();
 
-    private EntityManagerFactory entityManagerFactory;
-    private User currentUser;
-    private CustomHib customHib;
     private Product selectedProduct;
     private CartProduct selectedCartProduct;
     private Cart cart;
@@ -43,7 +40,9 @@ public class StorePageController implements PageController, Initializable {
     TableColumn<CartProduct, Integer> quantityColumn = new TableColumn<>("Quantity");
     TableColumn<Product, Double> avgRatingColumn = new TableColumn<>("Rating");
 
-
+    private EntityManagerFactory entityManagerFactory;
+    private User currentUser;
+    private CustomHib customHib;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

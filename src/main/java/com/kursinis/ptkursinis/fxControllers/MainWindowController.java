@@ -2,7 +2,7 @@ package com.kursinis.ptkursinis.fxControllers;
 
 import com.kursinis.ptkursinis.LaunchGUI;
 import com.kursinis.ptkursinis.helpers.JavaFxCustomUtils;
-import com.kursinis.ptkursinis.helpers.StringHelpers;
+import com.kursinis.ptkursinis.helpers.StringHelper;
 import com.kursinis.ptkursinis.model.Employee;
 import com.kursinis.ptkursinis.model.User;
 import jakarta.persistence.EntityManagerFactory;
@@ -30,18 +30,15 @@ public class MainWindowController {
     private EntityManagerFactory entityManagerFactory;
     private User currentUser;
 
-    @FXML
     public Button employeesButton;
-    @FXML
     public VBox vbox;
     @FXML
-    BorderPane borderPane;
+    private BorderPane borderPane;
 
     @FXML
     private void loadPage(ActionEvent event) {
-        String pageName = StringHelpers.camelCaseConverter(((Button) event.getSource()).getText());
+        String pageName = StringHelper.camelCaseConverter(((Button) event.getSource()).getText());
         String fxmlPath = "view/"+ pageName + "Page.fxml";
-        System.out.println(fxmlPath );
         Parent root = null;
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(LaunchGUI.class.getResource(fxmlPath));;

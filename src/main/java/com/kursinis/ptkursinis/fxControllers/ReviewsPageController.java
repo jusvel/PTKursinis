@@ -29,18 +29,26 @@ public class ReviewsPageController implements PageController, Initializable {
 
     private ObservableList<Product> productsData = FXCollections.observableArrayList();
     TableColumn<Product, Double> avgRatingColumn = new TableColumn<>("Rating");
+    private Product selectedProduct;
 
 
     private EntityManagerFactory entityManagerFactory;
     private User currentUser;
     private CustomHib customHib;
-    private Product selectedProduct;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         productTable.setItems(productsData);
         addProductSelectionListener();
         addAvarageRatingColumn();
+    }
+
+    @Override
+    public void setData(EntityManagerFactory entityManagerFactory, User currentUser) {
+        this.entityManagerFactory = entityManagerFactory;
+        this.currentUser = currentUser;
+        customHib = new CustomHib(this.entityManagerFactory);
+        loadProducts();
     }
 
     private void addAvarageRatingColumn() {
@@ -61,16 +69,6 @@ public class ReviewsPageController implements PageController, Initializable {
                 loadComments();
             }
         });
-    }
-
-    @Override
-    public void setData(EntityManagerFactory entityManagerFactory, User currentUser) {
-        this.entityManagerFactory = entityManagerFactory;
-        this.currentUser = currentUser;
-        customHib = new CustomHib(entityManagerFactory);
-        loadProducts();
-
-
     }
 
     private void loadProducts() {

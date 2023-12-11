@@ -17,24 +17,18 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class RegistrationController {
-    private EntityManagerFactory entityManagerFactory;
-    private CustomHib customHib;
-    @FXML
     public TextField usernameField;
-    @FXML
     public PasswordField passwordField;
-    @FXML
     public TextField emailField;
-    @FXML
     public TextField firstNameField;
-    @FXML
     public PasswordField lastNameField;
-    @FXML
     public TextField numberField;
-    @FXML
     public TextField addressField;
 
-    Scene scene;
+    private EntityManagerFactory entityManagerFactory;
+    private CustomHib customHib;
+
+    private Scene scene;
 
     @FXML
     public void cancelRegistration() throws IOException {
@@ -50,7 +44,7 @@ public class RegistrationController {
 
     @FXML
     public void signUp() throws IOException {
-        if (JavaFxCustomUtils.isAnyTextFieldEmpty(scene)) {
+        if (JavaFxCustomUtils.hasEmptyTextField(scene.getRoot())) {
             JavaFxCustomUtils.showError("Please fill in all fields");
         } else if(!customHib.isUsernameAvailable(usernameField.getText())){
             JavaFxCustomUtils.showError("Username is taken");
@@ -83,6 +77,6 @@ public class RegistrationController {
     public void setData(Scene scene, EntityManagerFactory entityManagerFactory) {
         this.scene = scene;
         this.entityManagerFactory = entityManagerFactory;
-        customHib = new CustomHib(entityManagerFactory);
+        customHib = new CustomHib(this.entityManagerFactory);
     }
 }

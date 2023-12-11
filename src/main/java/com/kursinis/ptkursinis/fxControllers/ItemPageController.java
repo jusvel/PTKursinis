@@ -12,7 +12,6 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 
@@ -20,9 +19,7 @@ import java.net.URL;
 import java.util.*;
 
 public class ItemPageController implements PageController, Initializable {
-    @FXML
     public TableView<Product> productsTableView;
-    @FXML
     public ListView warehouseListView;
 
     public ChoiceBox productTypeChoiceBox;
@@ -53,15 +50,16 @@ public class ItemPageController implements PageController, Initializable {
     public TableColumn<Product, Integer> diameterColumn;
     public TableColumn<Product, String> connectionTypeColumn;
 
-    Set<String> productTypes = new HashSet<>();
+    private final ObservableList<Product> productsData = FXCollections.observableArrayList();
     private List<Warehouse> allWarehouses;
+    private Product selectedProduct;
+
+    Set<String> productTypes = new HashSet<>();
 
     private EntityManagerFactory entityManagerFactory;
     private User currentUser;
     private CustomHib customHib;
-    private Product selectedProduct;
 
-    private final ObservableList<Product> productsData = FXCollections.observableArrayList();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -165,7 +163,6 @@ public class ItemPageController implements PageController, Initializable {
     public void updateProduct() {
         if(selectedProduct == null){
             JavaFxCustomUtils.showError("Please select a product");
-            System.out.println("Here");
             return;
         }
         try{
@@ -214,7 +211,6 @@ public class ItemPageController implements PageController, Initializable {
 
         String column = columnSelectChoiceBox.getValue().toString();
         String value = searchTextField.getText();
-        System.out.println(column + " " + value);
 
         switch (column.toLowerCase()) {
             case "id", "name", "price", "brand","type" ->

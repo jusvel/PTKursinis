@@ -1,8 +1,8 @@
 package com.kursinis.ptkursinis.fxControllers;
 
+import com.kursinis.ptkursinis.helpers.HashHelper;
 import com.kursinis.ptkursinis.helpers.JavaFxCustomUtils;
 import com.kursinis.ptkursinis.hibernateControllers.CustomHib;
-import com.kursinis.ptkursinis.model.Customer;
 import com.kursinis.ptkursinis.model.Employee;
 import com.kursinis.ptkursinis.model.User;
 import jakarta.persistence.EntityManagerFactory;
@@ -10,17 +10,14 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
-import org.mindrot.jbcrypt.BCrypt;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class EmployeesPageController implements PageController, Initializable {
-    @FXML
     public TableView<Employee> employeeTable;
     public TextField usernameField;
     public TextField passwordField;
@@ -31,18 +28,16 @@ public class EmployeesPageController implements PageController, Initializable {
     public TextField employeeIdField;
     public CheckBox isAdminCheckBox;
     public DatePicker employmentDateDatePicker;
-    @FXML
     public ChoiceBox columnSelectionBox;
     public VBox fieldVBox;
     public TextField searchField;
 
+    private ObservableList<Employee> employeeData = FXCollections.observableArrayList();
+    private Employee selectedEmployee;
+
     CustomHib customHib;
     private EntityManagerFactory entityManagerFactory;
     private User currentUser;
-
-    private Employee selectedEmployee;
-
-    private ObservableList<Employee> employeeData = FXCollections.observableArrayList();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -54,7 +49,7 @@ public class EmployeesPageController implements PageController, Initializable {
     public void setData(EntityManagerFactory entityManagerFactory, User currentUser) {
         this.entityManagerFactory = entityManagerFactory;
         this.currentUser = currentUser;
-        customHib = new CustomHib(entityManagerFactory);
+        customHib = new CustomHib(this.entityManagerFactory);
         loadEmployees();
         setupSelectionBox();
     }
@@ -88,7 +83,7 @@ public class EmployeesPageController implements PageController, Initializable {
     }
 
     public void addEmployee() {
-        if(JavaFxCustomUtils.isAnyTextFieldEmpty(fieldVBox)){
+        if(JavaFxCustomUtils.hasEmptyTextField(fieldVBox)){
             JavaFxCustomUtils.showError("Please fill in all fields");
             return;
         } else if(!customHib.isUsernameAvailable(usernameField.getText())){
@@ -98,7 +93,7 @@ public class EmployeesPageController implements PageController, Initializable {
             JavaFxCustomUtils.showError("Email is already taken");
             return;
         }
-        String password = BCrypt.hashpw(passwordField.getText(), BCrypt.gensalt());
+        String password = HashHelper.hashPassword(passwordField.getText());
         Employee employee = new Employee(usernameField.getText(), password, emailField.getText(), firstnameField.getText(), lastnameField.getText(), numberField.getText(), Integer.parseInt(employeeIdField.getText()), employmentDateDatePicker.getValue(), isAdminCheckBox.isSelected());
         customHib.create(employee);
         employeeData.add(employee);
@@ -126,13 +121,16 @@ public class EmployeesPageController implements PageController, Initializable {
             JavaFxCustomUtils.showError("Please select an employee");
             return;
         }
-        if(JavaFxCustomUtils.isAnyTextFieldEmpty(fieldVBox)){
+        if(JavaFxCustomUtils.hasEmptyTextField(fieldVBox)){
             JavaFxCustomUtils.showError("Please fill in all fields");
             return;
         }
-        String password = BCrypt.hashpw(passwordField.getText(), BCrypt.gensalt());
-        selectedEmployee.setUsername(usernameField.getText());
+        if(!selectedEmployee.getPassword().equals(passwordField.getText())){
+        String password = HashHelper.hashPassword(passwordField.getText());
         selectedEmployee.setPassword(password);
+        }
+
+        selectedEmployee.setUsername(usernameField.getText());
         selectedEmployee.setEmail(emailField.getText());
         selectedEmployee.setFirstName(firstnameField.getText());
         selectedEmployee.setLastName(lastnameField.getText());

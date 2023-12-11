@@ -5,9 +5,7 @@ import com.kursinis.ptkursinis.hibernateControllers.CustomHib;
 import com.kursinis.ptkursinis.model.*;
 import jakarta.persistence.EntityManagerFactory;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
-import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -63,6 +61,28 @@ public class MyOrdersPageController implements PageController, Initializable {
         dateCreatedColumn.setCellValueFactory(cellData -> new javafx.beans.property.SimpleStringProperty(cellData.getValue().getDateCreated().toString()));
         totalPriceColumn.setCellValueFactory(cellData -> new javafx.beans.property.SimpleStringProperty(String.valueOf(cellData.getValue().getTotalPrice())));
 
+        setUpActionColumn();
+        setColumnWidths();
+        ordersTableView.getColumns().add(productsColumn);
+        ordersTableView.getColumns().add(totalPriceColumn);
+        ordersTableView.getColumns().add(deliveryAddressColumn);
+        ordersTableView.getColumns().add(dateCreatedColumn);
+        ordersTableView.getColumns().add(statusColumn);
+        ordersTableView.getColumns().add(paymentStatusColumn);
+        ordersTableView.getColumns().add(actionsColumn);
+    }
+
+    private void setColumnWidths() {
+        productsColumn.setPrefWidth(300);
+        deliveryAddressColumn.setPrefWidth(150);
+        totalPriceColumn.setPrefWidth(100);
+        dateCreatedColumn.setPrefWidth(100);
+        statusColumn.setPrefWidth(100);
+        paymentStatusColumn.setPrefWidth(100);
+        actionsColumn.setPrefWidth(250);
+    }
+
+    private void setUpActionColumn() {
         actionsColumn.setCellFactory(param -> new TableCell<>() {
             private final Button cancelButton = new Button("Cancel");
             private final Button payButton = new Button("Pay");
@@ -114,21 +134,6 @@ public class MyOrdersPageController implements PageController, Initializable {
                 setGraphic(empty ? null : pane);
             }
         });
-
-        productsColumn.setPrefWidth(300);
-        deliveryAddressColumn.setPrefWidth(150);
-        totalPriceColumn.setPrefWidth(100);
-        dateCreatedColumn.setPrefWidth(100);
-        statusColumn.setPrefWidth(100);
-        paymentStatusColumn.setPrefWidth(100);
-        actionsColumn.setPrefWidth(250);
-        ordersTableView.getColumns().add(productsColumn);
-        ordersTableView.getColumns().add(totalPriceColumn);
-        ordersTableView.getColumns().add(deliveryAddressColumn);
-        ordersTableView.getColumns().add(dateCreatedColumn);
-        ordersTableView.getColumns().add(statusColumn);
-        ordersTableView.getColumns().add(paymentStatusColumn);
-        ordersTableView.getColumns().add(actionsColumn);
     }
 
     public void showChat(User orderer, User employee, Order order) {

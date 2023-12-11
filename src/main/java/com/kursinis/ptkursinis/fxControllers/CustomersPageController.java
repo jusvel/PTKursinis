@@ -1,5 +1,6 @@
 package com.kursinis.ptkursinis.fxControllers;
 
+import com.kursinis.ptkursinis.helpers.HashHelper;
 import com.kursinis.ptkursinis.helpers.JavaFxCustomUtils;
 import com.kursinis.ptkursinis.hibernateControllers.CustomHib;
 import com.kursinis.ptkursinis.model.Customer;
@@ -10,7 +11,6 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -21,27 +21,16 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class CustomersPageController implements Initializable, PageController{
-    @FXML
     public TableView<Customer> customerTable;
-    @FXML
     public TextField usernameField;
-    @FXML
     public TextField passwordField;
-    @FXML
     public TextField emailField;
-    @FXML
     public TextField firstnameField;
-    @FXML
     public TextField lastnameField;
-    @FXML
     public TextField numberField;
-    @FXML
     public TextField addressField;
-    @FXML
     public VBox fieldVBox;
-    @FXML
     public TextField searchField;
-    @FXML
     public ChoiceBox columnSelectionBox;
     public Button addCustomerButton;
     public Button deleteSelectedCustomerButton;
@@ -59,7 +48,16 @@ public class CustomersPageController implements Initializable, PageController{
     public void initialize(URL location, ResourceBundle resources) {
         customerTable.setItems(customersData);
         addSelectionListener();
+    }
 
+    @Override
+    public void setData(EntityManagerFactory entityManagerFactory, User currentUser) {
+        this.entityManagerFactory = entityManagerFactory;
+        this.currentUser = currentUser;
+        customHib = new CustomHib(this.entityManagerFactory);
+        loadCustomers();
+        setUpColumnSelectionBox();
+        disableFieldsForNonAdmins();
     }
 
     private void loadCustomers() {
@@ -85,19 +83,9 @@ public class CustomersPageController implements Initializable, PageController{
         });
     }
 
-    @Override
-    public void setData(EntityManagerFactory entityManagerFactory, User currentUser) {
-        this.entityManagerFactory = entityManagerFactory;
-        this.currentUser = currentUser;
-        customHib = new CustomHib(entityManagerFactory);
-        loadCustomers();
-        customerTable.getColumns().forEach(customerTableColumn -> {
-            columnSelectionBox.getItems().add(customerTableColumn.getText());
-        });
-        columnSelectionBox.getItems().remove("Type");
-        if(currentUser.getType().equals("E")){
-            if(!((Employee) currentUser).getIsAdmin()) {
-                usernameField.setDisable(true);
+    private void disableFieldsForNonAdmins() {
+        if(!((Employee) currentUser).getIsAdmin()){
+            usernameField.setDisable(true);
             passwordField.setDisable(true);
             emailField.setDisable(true);
             firstnameField.setDisable(true);
@@ -107,8 +95,14 @@ public class CustomersPageController implements Initializable, PageController{
             addCustomerButton.setDisable(true);
             deleteSelectedCustomerButton.setDisable(true);
             updateSelectedCustomerButton.setDisable(true);
-            }
         }
+    }
+
+    private void setUpColumnSelectionBox() {
+        customerTable.getColumns().forEach(customerTableColumn -> {
+            columnSelectionBox.getItems().add(customerTableColumn.getText());
+        });
+        columnSelectionBox.getItems().remove("Type");
     }
 
     public void deselectCustomer() {
@@ -124,7 +118,7 @@ public class CustomersPageController implements Initializable, PageController{
     }
 
     public void addCustomer() {
-        if(JavaFxCustomUtils.isAnyTextFieldEmpty(fieldVBox)){
+        if(JavaFxCustomUtils.hasEmptyTextField(fieldVBox)){
             JavaFxCustomUtils.showError("Please fill in all fields");
             return;
         } else if(!customHib.isUsernameAvailable(usernameField.getText())){
@@ -134,7 +128,8 @@ public class CustomersPageController implements Initializable, PageController{
             JavaFxCustomUtils.showError("Email is already taken");
             return;
         }
-        String password = BCrypt.hashpw(passwordField.getText(), BCrypt.gensalt());
+
+        String password = HashHelper.hashPassword(passwordField.getText());
         Customer customer = new Customer(usernameField.getText(), password, emailField.getText(), firstnameField.getText(), lastnameField.getText(), numberField.getText(), addressField.getText());
         customHib.create(customer);
         customersData.add(customer);
@@ -163,13 +158,15 @@ public class CustomersPageController implements Initializable, PageController{
             JavaFxCustomUtils.showError("Please select a customer");
             return;
         }
-        if(JavaFxCustomUtils.isAnyTextFieldEmpty(fieldVBox)){
+        if(JavaFxCustomUtils.hasEmptyTextField(fieldVBox)){
             JavaFxCustomUtils.showError("Please fill in all fields");
             return;
         }
-        String password = BCrypt.hashpw(passwordField.getText(), BCrypt.gensalt());
-        selectedCustomer.setUsername(usernameField.getText());
+        if(!selectedCustomer.getPassword().equals(passwordField.getText())){
+        String password = HashHelper.hashPassword(passwordField.getText());
         selectedCustomer.setPassword(password);
+        }
+        selectedCustomer.setUsername(usernameField.getText());
         selectedCustomer.setEmail(emailField.getText());
         selectedCustomer.setFirstName(firstnameField.getText());
         selectedCustomer.setLastName(lastnameField.getText());

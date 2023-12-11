@@ -1,14 +1,12 @@
 package com.kursinis.ptkursinis.hibernateControllers;
 
-import com.kursinis.ptkursinis.helpers.StringHelpers;
+import com.kursinis.ptkursinis.helpers.StringHelper;
 import com.kursinis.ptkursinis.model.*;
 import jakarta.persistence.*;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Predicate;
 import jakarta.persistence.criteria.Root;
-import org.hibernate.Session;
-import org.hibernate.Transaction;
 import org.mindrot.jbcrypt.BCrypt;
 
 import java.time.LocalDate;
@@ -103,8 +101,7 @@ public class CustomHib<T> extends GenericHib{
 
     public List<T> getProductSearch(Class<T> entityClass, String column, String value) {
         EntityManager em = null;
-        column = StringHelpers.camelCaseConverter(column);
-        System.out.println(column + " " + value);
+        column = StringHelper.camelCaseConverter(column);
 
         try{
             em = getEntityManager();
@@ -258,6 +255,43 @@ public class CustomHib<T> extends GenericHib{
             return null;
         } finally {
             if (em != null) em.close();
+        }
+    }
+
+    public void deletePost(Post selectedPost) {
+        EntityManager em = null;
+        try {
+            em = getEntityManager();
+            em.getTransaction().begin();
+
+            Post managedPost = em.merge(selectedPost);
+            managedPost.getUser().getPosts().remove(managedPost);
+
+            em.remove(managedPost);
+            em.getTransaction().commit();
+        } catch (Exception e){
+            e.printStackTrace();
+        } finally {
+            if(em != null) em.close();
+        }
+    }
+
+    public void deleteComment(PostComment selectedComment) {
+        EntityManager em = null;
+        try {
+            em = getEntityManager();
+            em.getTransaction().begin();
+
+            PostComment managedComment = em.merge(selectedComment);
+            managedComment.getUser().getComments().remove(managedComment);
+            managedComment.getPost().getComments().remove(managedComment);
+
+            em.remove(managedComment);
+            em.getTransaction().commit();
+        } catch (Exception e){
+            e.printStackTrace();
+        } finally {
+            if(em != null) em.close();
         }
     }
 }
